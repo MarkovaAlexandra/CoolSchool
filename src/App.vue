@@ -1,15 +1,48 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <AuthorizationComponent />
+  <hr>
+  <TaskComponent />
+  <hr>
+  <Plus10Component />
+  <hr>
+  <Minus10Component />
+  <hr>
+  <PlusNoTransferComponent />
+  <hr>
+  <MinusNoTransferComponent />
+  <hr>
+  <PlusStolbikComponent />
+  <hr>
+  <UserStatisticComponent />
+  <hr>
+  <FooterComponent />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TaskComponent from './components/TasksComponent.vue'
+import Minus10Component from './components/Minus10Component.vue';
+import Plus10Component from './components/Plus10Component.vue';
+import PlusStolbikComponent from './components/PlusStolbikComponent.vue';
+import AuthorizationComponent from './components/AuthorizationComponent.vue';
+import FooterComponent from './components/FooterComponent.vue';
+import UserStatisticComponent from './components/UserStatisticComponent.vue';
+import HelloWorld from './components/HelloWorld.vue';
+import PlusNoTransferComponent from './components/PlusNoTransferComponent.vue';
+import MinusNoTransferComponent from './components/MinusNoTransferComponent.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    TaskComponent,
+    Plus10Component,
+    PlusStolbikComponent,
+    Minus10Component,
+    AuthorizationComponent,
+    FooterComponent,
+    UserStatisticComponent,
+    HelloWorld,
+    PlusNoTransferComponent,
+    MinusNoTransferComponent
   }
 }
 </script>
