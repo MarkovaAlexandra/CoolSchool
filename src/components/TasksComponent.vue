@@ -5,11 +5,11 @@
         <button style="background-color: rgb(197, 161, 161);">Plus10</button>
         <button style="background-color: rgb(197, 161, 161);">Plus20NoTransfer</button>
         <button style="background-color: rgb(197, 161, 161);">Minus20NoTransfer</button>
-        <button>MultTabl</button>
-        <button>DivTabl</button>
+        <button style="background-color: rgb(197, 161, 161);">MultTabl</button>
+        <button style="background-color: rgb(197, 161, 161);">DivTabl</button>
         <button style="background-color: rgb(197, 161, 161);">PlusStolbik</button>
         <button>MinusStolbik</button>
-        <button>MultStolbik</button>
+        <button style="background-color: rgb(197, 161, 161);">MultStolbik</button>
         <button>DivStolbik</button>
 
     </div>

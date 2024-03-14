@@ -2,16 +2,18 @@
     <h2>Plus10Component</h2>
     <button @click="start">start</button>
     <div class="strochnie-vichisleniya">
-
-        <div class="first">{{ first }}</div>
+        <!--:class добавляется если условие hasAnimation = true,
+изначально ставлю его false, в момент старта меняю на тру, чтобы добавить класс в момент появления данных в диве,
+в ф-ции check снова ставлю false, для message тоже самое, ток наоборот-->
+        <div class="first" :class="{ animation: hasAnimation }">{{ first }}</div>
         <div class="operand">{{ operand }}</div>
-        <div class="second">{{ second }}</div>
+        <div class="second" :class="{ animation: hasAnimation }">{{ second }}</div>
         <div class="equal">=</div>
-        <input type="number" v-model="userResult">
+        <input class="userInput" :class="{ showInputBorder: hasAnimation }" @keyup.enter="check" type="number"
+            v-model="userResult">
         <button @click="check">check</button>
     </div>
-
-    <div class="message"> {{ message }}</div>
+    <div class="message" :class="{ animation: !hasAnimation }"> {{ message }}</div>
     <div> Счёт = {{ userCount }}</div>
 </template>
 
@@ -19,6 +21,7 @@
 export default {
     data() {
         return {
+            hasAnimation: false,
             first: null,
             second: null,
             operand: '+',
@@ -33,11 +36,14 @@ export default {
         start() {
             this.userResult = '',
                 this.message = '',
-                this.first = Math.floor(Math.random() * this.max + 1);
+                this.hasAnimation = true;
+            this.first = Math.floor(Math.random() * this.max + 1);
             this.second = Math.floor(Math.random() * (10 - this.first) + 1);
             this.result = this.first + this.second;
+
         },
         check() {
+            this.hasAnimation = false;
             if (this.result == this.userResult) {
                 this.message = 'Верно'
                 this.userCount++;
@@ -50,6 +56,7 @@ export default {
             }, 1000);
 
         },
+
 
     }
 }
@@ -65,9 +72,6 @@ export default {
 .second {
     height: 25px;
     width: 25px;
-}
-
-.message {
-    height: 25px;
+    font-size: 24px;
 }
 </style>

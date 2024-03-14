@@ -1,8 +1,9 @@
 <template>
-    <h2>MinusNoTransferComponent</h2>
     <div>
+        <h2>DivTablComponent</h2>
         <button @click="start">start</button>
         <div class="strochnie-vichisleniya">
+
             <div class="first" :class="{ animation: hasAnimation }">{{ first }}</div>
             <div class="operand">{{ operand }}</div>
             <div class="second" :class="{ animation: hasAnimation }">{{ second }}</div>
@@ -11,9 +12,9 @@
                 v-model="userResult">
             <button @click="check">check</button>
         </div>
-        <div class="message" :class="{ animation: hasAnimation }"> {{ message }}</div>
-        <div> Счёт = {{ userCount }}</div>
 
+        <div class="message" :class="{ animation: !hasAnimation }"> {{ message }}</div>
+        <div> Счёт = {{ userCount }}</div>
     </div>
 </template>
 
@@ -23,15 +24,13 @@ export default {
         return {
             hasAnimation: false,
             first: null,
-            max: 99,
-            min: 21,
             second: null,
-            secondMax: null,
-            secondMin: 1,
-            operand: '-',
+            operand: ':',
             userResult: '',
             message: '',
             userCount: 0,
+            max: 9,
+            min: 1,
         }
     },
     methods: {
@@ -39,15 +38,10 @@ export default {
             this.hasAnimation = true;
             this.userResult = '',
                 this.message = '',
-                //рандомим слагаемые
-                //первое от 99 до 21
-                this.first = Math.floor(Math.random() * (this.max - this.min + 1) + this.min);
-            //второе в десятках (от max = десятков первого до 1)
-            const tens = Math.floor(Math.random() * (Math.floor(this.first / 10) - 1) + 1);
-            //второе в единицах  от( max=единиц первого до 0)
-            const units = Math.floor(Math.random() * (Math.floor(this.first % 10)))
-            this.second = tens * 10 + units;
-            this.result = this.first - this.second;
+
+                this.second = Math.floor(Math.random() * this.max + 1);
+            this.result = Math.floor(Math.random() * this.max + 1);
+            this.first = this.second * this.result;
         },
         check() {
             this.hasAnimation = false;
@@ -68,4 +62,4 @@ export default {
 }
 </script>
 
-<style ></style>
+

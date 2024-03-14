@@ -1,18 +1,18 @@
 <template>
-    <h2>PlusStolbikComponent</h2>
+    <h2>MinusStolbikComponent</h2>
     <button @click="start">start</button>
     <form action="#">
         <div class="stolbikBox">
             <div class="userInputHelpBox">
-                <input type="number" class="helpUserInput" :class="{ showInputBorder: isBorder }">
-                <input type="number" class="helpUserInput" :class="{ showInputBorder: isBorder }">
-                <input type="number" class="helpUserInput" :class="{ showInputBorder: isBorder }">
-                <input disabled type="number" class="helpUserInput" :class="{ showInputBorder: isBorder }">
+                <input type="text" class="helpUserInput" :class="{ showInputBorder: isBorder }">
+                <input type="text" class="helpUserInput" :class="{ showInputBorder: isBorder }">
+                <input type="text" class="helpUserInput" :class="{ showInputBorder: isBorder }">
+                <input type="text" class="helpUserInput" :class="{ showInputBorder: isBorder }">
             </div>
             <div class="first-stolbik">
                 <div v-for="(item, index) in firstList" :key="index" class="number" :class="{ animation: hasAnimation }">{{
                     item }}</div>
-                <div class="operand" :class="{ animation: hasAnimation }">+</div>
+                <div class="operand" :class="{ animation: hasAnimation }">-</div>
             </div>
 
             <div class="second-stolbik">
@@ -68,10 +68,10 @@ export default {
             this.userResult = '';
             this.message = '';
             this.first = Math.floor(Math.random() * (this.max - this.min + 1) + this.min);
-            this.second = Math.floor(Math.random() * (this.max - this.min + 1) + this.min);
+            this.second = Math.floor(Math.random() * (this.first - this.min + 1) + this.min);
             this.firstList = String(this.first).split('');
             this.secondList = String(this.second).split('');
-            this.result = this.first + this.second;
+            this.result = this.first - this.second;
         },
         check() {
             this.hasAnimation = false;
@@ -100,11 +100,6 @@ export default {
 
 
 <style scoped>
-.userInputHelpBox :last-child {
-    border: 1px solid transparent;
-    background-color: transparent;
-}
-
 .number {
     width: 50px;
     height: 50px;

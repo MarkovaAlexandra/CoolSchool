@@ -2,15 +2,16 @@
     <h2>Minus10Component</h2> <button @click="start">start</button>
     <div class="strochnie-vichisleniya">
 
-        <div class="first">{{ first }}</div>
+        <div class="first" :class="{ animation: hasAnimation }">{{ first }}</div>
         <div class="operand">{{ operand }}</div>
-        <div class="second">{{ second }}</div>
+        <div class="second" :class="{ animation: hasAnimation }">{{ second }}</div>
         <div class="equal">=</div>
-        <input type="number" v-model="userResult">
+        <input class="userInput" :class="{ showInputBorder: hasAnimation }" @keyup.enter="check" type="number"
+            v-model="userResult">
         <button @click="check">check</button>
 
     </div>
-    <div class="message">{{ message }}</div>
+    <div class="message" :class="{ animation: !hasAnimation }">{{ message }}</div>
     <div> Счёт = {{ userCount }}</div>
 </template>
 
@@ -18,6 +19,7 @@
 export default {
     data() {
         return {
+            hasAnimation: false,
             first: null,
             second: null,
             operand: '-',
@@ -30,6 +32,7 @@ export default {
     },
     methods: {
         start() {
+            this.hasAnimation = true;
             this.userResult = '',
                 this.message = '',
                 this.first = Math.floor(Math.random() * this.max + 1);
@@ -37,6 +40,7 @@ export default {
             this.result = this.first - this.second;
         },
         check() {
+            this.hasAnimation = false;
             if (this.result == this.userResult) {
                 this.message = 'Верно'
                 this.userCount++;
