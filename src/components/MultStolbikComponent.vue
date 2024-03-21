@@ -12,7 +12,7 @@
             <div class="first-stolbik">
                 <div v-for="(item, index) in firstList" :key="index" class="number" :class="{ animation: hasAnimation }">{{
                     item }}</div>
-                <div class="operand" :class="{ animation: hasAnimation }">X</div>
+                <div class="operand" :class="{ animation: hasAnimation }">{{ operandMult }}</div>
             </div>
 
             <div class="second-stolbik">
@@ -26,7 +26,7 @@
                 <input type="number" class="userInput" :class="{ showInputBorder: isBorder }">
                 <input type="number" class="userInput" :class="{ showInputBorder: isBorder }">
                 <input type="number" class="userInput" :class="{ showInputBorder: isBorder }">
-                <div class="operand-plus" :class="{ animation: hasAnimation }">+</div>
+                <div class="operand-plus" :class="{ animation: hasAnimation }">{{ operandPlus }}</div>
             </div>
             <div class="userInputBox userInput2Box">
                 <input type="number" class="userInput" :class="{ showInputBorder: isBorder }">
@@ -62,7 +62,8 @@ export default {
             second: null,
             firstList: [],
             secondList: [],
-            operand: '+',
+            operandPlus: '',
+            operandMult: '',
             result: null,
             userResTenThousand: '',
             userResThousand: '',
@@ -96,6 +97,8 @@ export default {
             this.secondList = String(this.second).split('');
             this.result = this.first * this.second;
             console.log(this.result);
+            this.operandPlus = '+';
+            this.operandMult = 'X';
 
         },
         check() {

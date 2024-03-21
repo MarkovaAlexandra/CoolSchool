@@ -12,7 +12,7 @@
             <div class="first-stolbik">
                 <div v-for="(item, index) in firstList" :key="index" class="number" :class="{ animation: hasAnimation }">{{
                     item }}</div>
-                <div class="operand" :class="{ animation: hasAnimation }">+</div>
+                <div class="operand" :class="{ animation: hasAnimation }">{{ operand }}</div>
             </div>
 
             <div class="second-stolbik">
@@ -43,7 +43,7 @@ export default {
             second: null,
             firstList: [],
             secondList: [],
-            operand: '+',
+            operand: '',
             result: null,
             userResThousand: '',
             userResHundred: '',
@@ -72,6 +72,7 @@ export default {
             this.firstList = String(this.first).split('');
             this.secondList = String(this.second).split('');
             this.result = this.first + this.second;
+            this.operand = '+';
         },
         check() {
             this.hasAnimation = false;

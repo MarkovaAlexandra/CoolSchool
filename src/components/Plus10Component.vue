@@ -6,7 +6,7 @@
 изначально ставлю его false, в момент старта меняю на тру, чтобы добавить класс в момент появления данных в диве,
 в ф-ции check снова ставлю false, для message тоже самое, ток наоборот-->
         <div class="first" :class="{ animation: hasAnimation }">{{ first }}</div>
-        <div class="operand">{{ operand }}</div>
+        <div class="operand-strochniy" :class="{ animation: hasAnimation }">{{ operand }}</div>
         <div class="second" :class="{ animation: hasAnimation }">{{ second }}</div>
         <div class="equal">=</div>
         <input class="userInput" :class="{ showInputBorder: hasAnimation }" @keyup.enter="check" type="number"
@@ -24,7 +24,7 @@ export default {
             hasAnimation: false,
             first: null,
             second: null,
-            operand: '+',
+            operand: '',
             userResult: '',
             message: '',
             userCount: 0,
@@ -40,6 +40,7 @@ export default {
             this.first = Math.floor(Math.random() * this.max + 1);
             this.second = Math.floor(Math.random() * (10 - this.first) + 1);
             this.result = this.first + this.second;
+            this.operand = "+";
 
         },
         check() {
@@ -63,7 +64,12 @@ export default {
 </script>
 
 <style >
+h2 {
+    margin-top: 50px;
+}
+
 .strochnie-vichisleniya {
+
     display: flex;
     justify-content: center;
 }
