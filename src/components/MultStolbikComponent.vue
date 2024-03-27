@@ -152,11 +152,4 @@ export default {
     top: 32px;
     font-size: 41px;
 }
-
-.number {
-    width: 50px;
-    height: 50px;
-    font-size: 24px;
-    border: 1px solid red;
-}
 </style>

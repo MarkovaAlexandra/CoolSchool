@@ -100,11 +100,4 @@ export default {
 
 
 
-<style scoped>
-.number {
-    width: 50px;
-    height: 50px;
-    border: 1px solid red;
-    font-size: 24px;
-}
-</style>
+<style scoped></style>

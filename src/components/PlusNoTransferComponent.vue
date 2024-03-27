@@ -1,15 +1,15 @@
 <template>
     <h2>PlusNoTransferComponent</h2>
     <div>
-        <button @click="start">start</button>
-        <div class="strochnie-vichisleniya">
+
+        <div class="strochnie-vichisleniya"><button class="btn-calc" @click="start">start</button>
             <div class="first" :class="{ animation: hasAnimation }">{{ first }}</div>
-            <div class="operand">{{ operand }}</div>
+            <div class="operand-strochniy" :class="{ animation: hasAnimation }">{{ operand }}</div>
             <div class="second" :class="{ animation: hasAnimation }">{{ second }}</div>
             <div class="equal">=</div>
             <input class="userInput" :class="{ showInputBorder: hasAnimation }" @keyup.enter="check" type="number"
                 v-model="userResult">
-            <button @click="check">check</button>
+            <button class="btn-calc" @click="check">check</button>
         </div>
         <div class="message" :class="{ animation: hasAnimation }"> {{ message }}</div>
         <div> Счёт = {{ userCount }}</div>
@@ -28,7 +28,7 @@ export default {
             second: null,
             secondMax: null,
             secondMin: 1,
-            operand: '+',
+            operand: '',
             userResult: '',
             message: '',
             userCount: 0,
@@ -48,6 +48,7 @@ export default {
             const units = Math.floor(Math.random() * (9 - (Math.floor(this.first % 10)) + 1))
             this.second = tens * 10 + units;
             this.result = this.first + this.second;
+            this.operand = '+';
         },
         check() {
             this.hasAnimation = false;
@@ -68,13 +69,4 @@ export default {
 }
 </script>
 
-<style >
-.first,
-.second {
-    height: 25px;
-}
-
-.message {
-    height: 25px;
-}
-</style>
+<style ></style>

@@ -1,7 +1,9 @@
 <template>
     <h2>PlusStolbikComponent</h2>
     <button @click="start">start</button>
+
     <form action="#">
+
         <div class="stolbikBox">
             <div class="userInputHelpBox">
                 <input type="number" class="helpUserInput" :class="{ showInputBorder: isBorder }">
@@ -26,8 +28,9 @@
                 <input v-model="userResTen" type="number" class="userInput" :class="{ showInputBorder: isBorder }">
                 <input v-model="userResUnit" type="number" class="userInput" :class="{ showInputBorder: isBorder }">
             </div>
-            <button type="reset" @click="check">check</button>
         </div>
+        <button type="reset" @click="check">check</button>
+
     </form>
     <div class="message" :class="{ animation: !hasAnimation }">{{ message }}</div>
     <div> Счёт = {{ userCount }}</div>
@@ -100,16 +103,17 @@ export default {
 
 
 
-<style scoped>
+<style >
 .userInputHelpBox :last-child {
     border: 1px solid transparent;
     background-color: transparent;
 }
 
 .number {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border: 1px solid red;
-    font-size: 24px;
+    font-size: 40px;
+    background-color: #ffdbe8;
 }
 </style>

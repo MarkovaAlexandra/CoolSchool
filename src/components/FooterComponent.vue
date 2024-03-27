@@ -11,6 +11,6 @@
 
 <style>
 .footer {
-    height: 350px;
+    height: 50px;
 }
 </style>

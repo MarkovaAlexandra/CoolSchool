@@ -1,16 +1,16 @@
 <template>
     <div>
         <h2>DivTablComponent</h2>
-        <button @click="start">start</button>
-        <div class="strochnie-vichisleniya">
 
+        <div class="strochnie-vichisleniya">
+            <button class="btn-calc" @click="start">start</button>
             <div class="first" :class="{ animation: hasAnimation }">{{ first }}</div>
             <div class="operand-strochniy" :class="{ animation: hasAnimation }">{{ operand }}</div>
             <div class="second" :class="{ animation: hasAnimation }">{{ second }}</div>
-            <div class="equal">=</div>
+            <div class="equal" :class="{ animation: hasAnimation }">=</div>
             <input class="userInput" :class="{ showInputBorder: hasAnimation }" @keyup.enter="check" type="number"
                 v-model="userResult">
-            <button @click="check">check</button>
+            <button class="btn-calc" @click="check">check</button>
         </div>
 
         <div class="message" :class="{ animation: !hasAnimation }"> {{ message }}</div>
