@@ -1,22 +1,34 @@
 <template>
-    <h2>Minus10Component</h2>
-
-    <div class="strochnie-vichisleniya">
+    <div class="main">
+        <!-- <h2>Minus10Component</h2> -->
+        <StarsComponent />
         <button class="btn-calc" @click="start">start</button>
-        <div class="first" :class="{ animation: hasAnimation }">{{ first }}</div>
-        <div class="operand-strochniy" :class="{ animation: hasAnimation }">{{ operand }}</div>
-        <div class="second" :class="{ animation: hasAnimation }">{{ second }}</div>
-        <div :class="{ animation: hasAnimation }" class="equal">=</div>
-        <input class="userInput" :class="{ showInputBorder: hasAnimation }" @keyup.enter="check" type="number"
-            v-model="userResult">
-        <button class="btn-calc" @click="check">check</button>
+        <div class="strochnie-vichisleniya">
 
+            <div class="first">
+                <p :class="{ animation: hasAnimation }">{{ first }}</p>
+            </div>
+            <div class="operand-strochniy">
+                <p :class="{ animation: hasAnimation }">{{ operand }}</p>
+            </div>
+            <div class="second">
+                <p :class="{ animation: hasAnimation }">{{ second }}</p>
+            </div>
+            <div class="equal">
+                <p :class="{ animation: hasAnimation }">=</p>
+            </div>
+            <input id="startHere" class="userInput" :class="{ showInputBorder: hasAnimation }" @keyup.enter="check"
+                type="number" v-model="userResult">
+            <!-- <button class="btn-calc" @click="check">check</button> -->
+
+        </div>
+        <div class="message" :class="{ animation: !hasAnimation }">{{ message }}</div>
+        <div class="count"> Счёт = {{ userCount }}</div>
     </div>
-    <div class="message" :class="{ animation: !hasAnimation }">{{ message }}</div>
-    <div> Счёт = {{ userCount }}</div>
 </template>
 
 <script>
+import StarsComponent from './StarsComponent.vue';
 export default {
     data() {
         return {
@@ -25,14 +37,17 @@ export default {
             second: null,
             operand: '',
             userResult: '',
+            iterations: 0,
             message: '',
             max: 9,
             min: 1,
             userCount: 0,
-        }
+        };
     },
     methods: {
         start() {
+            const start = document.getElementById('startHere');
+            start.focus();
             this.hasAnimation = true;
             this.userResult = '',
                 this.message = '',
@@ -41,21 +56,40 @@ export default {
             this.result = this.first - this.second;
             this.operand = '-';
         },
+
         check() {
             this.hasAnimation = false;
+            const starList = document.querySelectorAll('.front-star');
             if (this.result == this.userResult) {
-                this.message = 'Верно'
+                this.message = 'Правильно!';
                 this.userCount++;
-            } else {
-                this.message = 'Упсссс';
-                this.userCount--;
+                starList[this.iterations].classList.add('_gold');
             }
-            setTimeout(() => {
-                this.start()
-            }, 1000);
+            else {
+                this.message = 'Не правильно...';
+
+            }
+            this.iterations++;
+            if (this.iterations < 10) {
+                setTimeout(() => {
+                    this.start();
+                }, 1000);
+            }
+            else {
+                this.message = `ваш результат ` + this.userCount + ` из ` + this.iterations;
+                setTimeout(() => {
+                    this.iterations = '';
+                    this.userCount = 0;
+                    this.first = '';
+                    this.second = '';
+                    this.operand = '';
+                    starList.forEach(star => star.classList.remove('_gold'));
+                }, 3000);
+            }
 
         },
-    }
+    },
+    components: { StarsComponent }
 }
 </script>
 

@@ -1,21 +1,29 @@
 <template>
-    <div>
-        <h2>DivStolbikComponent</h2>
-        <h2>ДОБАВИТЬ ПРОВЕРКУ ОСТАТКА В РЕЗУЛЬТАТ</h2>
-        <button @click="start">start</button>
-        <form action="#">
+    <div class="main">
+
+        <!-- <h2>DivStolbikComponent</h2> -->
+        <StarsComponent />
+
+
+        <button id="scrollHere" class="btn-calc" @click="start">start</button>
+        <form id="mainForm" action="#">
+            <button class="btn-calc" type="reset" @click="check">check</button>
+
+            <div class="count"> Счёт = {{ userCount }}</div>
+
+
             <div class="tren-content center">
 
                 <table>
                     <tr>
                         <td class="minus invisible"></td>
-                        <td>{{ firstList[0] }}</td>
-                        <td>{{ firstList[1] }}</td>
-                        <td>{{ firstList[2] }}</td>
+                        <td class="number">{{ firstList[0] }}</td>
+                        <td class="number">{{ firstList[1] }}</td>
+                        <td class="number">{{ firstList[2] }}</td>
                         <td class="narrow-vertical blueLine"></td>
-                        <td>{{ secondList[0] }}</td>
-                        <td></td>
-                        <td></td>
+                        <td class="number">{{ secondList[0] }}</td>
+                        <td class="number">{{ secondList[1] }}</td>
+                        <td class="number"></td>
                     </tr>
                     <tr>
                         <td class="minus"></td>
@@ -129,9 +137,9 @@
                     </tr>
                     <tr>
                         <td class="minus invisible"></td>
-                        <td><input class="input-division" type="number"></td>
-                        <td><input class="input-division" type="number"></td>
-                        <td><input v-model="userOstatok" class="input-division" type="number">остаток</td>
+                        <td colspan="2" class="white">остаток</td>
+
+                        <td><input v-model="userOstatok" class="input-division" type="number"></td>
                         <td class="narrow-vertical"></td>
                         <td class="invisible"></td>
                         <td class="invisible"></td>
@@ -143,17 +151,25 @@
                 </table>
 
             </div>
-            <button type="reset" @click="check">check</button>
+
 
         </form>
         <div class="message" :class="{ animation: !hasAnimation }">{{ message }}</div>
-        <div> Счёт = {{ userCount }}</div>
+
+
     </div>
 </template>
 
 
 <script>
+import StarsComponent from './StarsComponent.vue';
+
 export default {
+    mounted() {
+
+    },
+
+
     data() {
         return {
             // hasAnimation: false,
@@ -164,6 +180,7 @@ export default {
             secondList: [],
             operand: '+',
             result: null,
+            ostatok: null,
             userResTenThousand: '',
             userResThousand: '',
             userResHundred: '',
@@ -171,17 +188,21 @@ export default {
             userResUnit: '',
             userOstatok: '',
             userResult: '',
+            iterations: 0,
             message: '',
             userCount: 0,
             max: 999,
             min: 100,
-            max2: 9,
+            max2: 50,
             min2: 2,
 
         }
     },
     methods: {
         start() {
+            let element = document.getElementById('scrollHere');
+            element.scrollIntoView({ behavior: 'smooth' });
+
             // this.isBorder = true;
             // this.hasAnimation = true;
             this.userResTenThousand = '';
@@ -190,37 +211,57 @@ export default {
             this.userResTen = '';
             this.userResUnit = '';
             this.userResult = '';
+            this.userOstatok = '';
             this.message = '';
             this.first = Math.floor(Math.random() * (this.max - this.min + 1) + this.min);
             this.second = Math.floor(Math.random() * (this.max2 - this.min2 + 1) + this.min2);
             this.firstList = String(this.first).split('');
             this.secondList = String(this.second).split('');
             this.result = Math.floor(this.first / this.second);
+            this.ostatok = this.first % this.second;
             console.log(this.result);
+            console.log(this.ostatok);
             console.log(this.firstList);
             console.log(this.secondList);
 
         },
         check() {
             // this.hasAnimation = false;
+
+            const starList = document.querySelectorAll('.front-star');
             this.userResult = Number(String(this.userResHundred)
                 + String(this.userResTen) + String(this.userResUnit));
             console.log(this.userResult);
             console.log(this.result);
 
-            if (this.result == this.userResult) {
-                this.message = 'Верно'
+            if (this.result == this.userResult & this.ostatok == this.userOstatok) {
+                this.message = 'Правильно!'
                 this.userCount++;
+                starList[this.iterations].classList.add('_gold');
             } else {
-                this.message = 'Упсссс';
-                this.userCount--;
+                this.message = 'Не правильно';
+
             }
-            setTimeout(() => {
-                this.start()
-            }, 1000);
+            this.iterations++;
+            if (this.iterations < 10) {
+                setTimeout(() => {
+                    this.start();
+                }, 1000);
+            }
+            else {
+                this.message = `ваш результат ` + this.userCount + ` из ` + this.iterations;
+                setTimeout(() => {
+                    this.iterations = '';
+                    this.userCount = 0;
+                    starList.forEach(star => star.classList.remove('_gold'));
+                }, 3000);
+            }
 
         },
 
+    },
+    components: {
+        StarsComponent,
     }
 
 }
@@ -243,6 +284,9 @@ td,
     height: 50px;
     border: 1px solid grey;
     border-radius: 5px;
+
+
+
 
 }
 
@@ -268,6 +312,12 @@ td,
 
 .blueLine {
     background-color: blue;
+}
+
+.white {
+    background-color: #fff;
+    font-size: 24px;
+    font-weight: 700;
 }
 
 .minus {

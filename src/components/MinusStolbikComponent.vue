@@ -1,39 +1,74 @@
 <template>
-    <h2>MinusStolbikComponent</h2>
-    <button @click="start">start</button>
-    <form action="#">
-        <div class="stolbikBox">
-            <div class="userInputHelpBox">
-                <input type="text" class="helpUserInput" :class="{ showInputBorder: isBorder }">
-                <input type="text" class="helpUserInput" :class="{ showInputBorder: isBorder }">
-                <input type="text" class="helpUserInput" :class="{ showInputBorder: isBorder }">
-                <input type="text" class="helpUserInput" :class="{ showInputBorder: isBorder }">
-            </div>
-            <div class="first-stolbik">
-                <div v-for="(item, index) in firstList" :key="index" class="number" :class="{ animation: hasAnimation }">{{
-                    item }}</div>
-                <div class="operand" :class="{ animation: hasAnimation }">{{ operand }}</div>
-            </div>
+    <div class="main">
+        <!-- <h2>MinusStolbikComponent</h2> -->
+        <StarsComponent />
+        <button class="btn-calc" @click="start">start</button>
+        <form action="#">
 
-            <div class="second-stolbik">
-                <div v-for="(item, index) in secondList" :key="index" class="number" :class="{ animation: hasAnimation }">{{
-                    item }}</div>
+            <div class="stolbikBox">
+                <div class="userInputHelpBox">
+                    <input id="3" @keyup.enter="changeFocus($event)" type="number" class="helpUserInput"
+                        :class="{ showInputBorder: isBorder }">
+                    <input id="1" @keyup.enter="changeFocus($event)" type="number" class="helpUserInput"
+                        :class="{ showInputBorder: isBorder }">
+                    <input @keyup.enter="changeFocus($event)" type="number" class="helpUserInput"
+                        :class="{ showInputBorder: isBorder }">
+                </div>
+                <div class="first-stolbik">
+                    <div class="number">
+                        <p :class="{ animation: hasAnimation }">{{
+                            firstList[0] }}</p>
+                    </div>
+                    <div class="number">
+                        <p :class="{ animation: hasAnimation }">{{
+                            firstList[1] }}</p>
+                    </div>
+                    <div class="number">
+                        <p :class="{ animation: hasAnimation }">{{
+                            firstList[2] }}</p>
+                    </div>
+
+                </div>
+                <div class="operand"> - </div>
+
+                <div class="second-stolbik">
+
+                    <div class="number">
+                        <p :class="{ animation: hasAnimation }">{{
+                            secondList[0] }}</p>
+                    </div>
+                    <div class="number">
+                        <p :class="{ animation: hasAnimation }">{{
+                            secondList[1] }}</p>
+                    </div>
+                    <div class="number">
+                        <p :class="{ animation: hasAnimation }">{{
+                            secondList[2] }}</p>
+                    </div>
+
+                </div>
+                <div class="underline" :class="{ showUnderline: isBorder }"></div>
+                <div class="userInputBox">
+                    <!-- <input @keyup.enter="changeFocus($event)" v-model="userResThousand" type="number" class="userInput"
+                    :class="{ showInputBorder: isBorder }"> -->
+                    <input id="5" @keyup.enter="changeFocus($event)" v-model="userResHundred" type="number"
+                        class="userInput" :class="{ showInputBorder: isBorder }">
+                    <input id="4" @keyup.enter="changeFocus($event)" v-model="userResTen" type="number" class="userInput"
+                        :class="{ showInputBorder: isBorder }">
+                    <input id="2" @keyup.enter="changeFocus($event)" v-model="userResUnit" type="number" class="userInput"
+                        :class="{ showInputBorder: isBorder }">
+                </div>
+                <button id="6" class="btn-calc" type="reset" @click="check">check</button>
             </div>
-            <div class="underline" :class="{ showUnderline: isBorder }"></div>
-            <div class="userInputBox">
-                <input v-model="userResThousand" type="number" class="userInput" :class="{ showInputBorder: isBorder }">
-                <input v-model="userResHundred" type="number" class="userInput" :class="{ showInputBorder: isBorder }">
-                <input v-model="userResTen" type="number" class="userInput" :class="{ showInputBorder: isBorder }">
-                <input v-model="userResUnit" type="number" class="userInput" :class="{ showInputBorder: isBorder }">
-            </div>
-            <button type="reset" @click="check">check</button>
-        </div>
-    </form>
-    <div class="message" :class="{ animation: !hasAnimation }">{{ message }}</div>
-    <div> Счёт = {{ userCount }}</div>
+        </form>
+        <div class="message" :class="{ animation: !hasAnimation }">{{ message }}</div>
+        <div class="count"> Счёт = {{ userCount }}</div>
+    </div>
 </template>
 
 <script>
+import StarsComponent from './StarsComponent.vue';
+
 export default {
     data() {
         return {
@@ -43,7 +78,6 @@ export default {
             second: null,
             firstList: [],
             secondList: [],
-            operand: '',
             result: null,
             userResThousand: '',
             userResHundred: '',
@@ -52,13 +86,18 @@ export default {
             userResult: '',
             message: '',
             userCount: 0,
+            iterations: 0,
             max: 999,
             min: 100,
             smth: '',
-        }
+        };
     },
     methods: {
         start() {
+            // const element = document.getElementById('scrollHere');
+            // element.scrollIntoView({ behavior: 'smooth' });
+            const start = document.getElementById('1');
+            start.focus();
             this.hasAnimation = true;
             this.isBorder = true;
             this.userResThousand = '';
@@ -72,28 +111,50 @@ export default {
             this.firstList = String(this.first).split('');
             this.secondList = String(this.second).split('');
             this.result = this.first - this.second;
-            this.operand = '-';
         },
         check() {
             this.hasAnimation = false;
+            const starList = document.querySelectorAll('.front-star');
             this.userResult = Number(String(this.userResThousand) + String(this.userResHundred)
                 + String(this.userResTen) + String(this.userResUnit));
             console.log(this.userTotal);
-
             if (this.result == this.userResult) {
-                this.message = 'Верно'
+                this.message = 'Правильно!';
                 this.userCount++;
-            } else {
-                this.message = 'Упсссс';
-                this.userCount--;
+                starList[this.iterations].classList.add('_gold');
             }
-            setTimeout(() => {
-                this.start()
-            }, 1000);
+            else {
+                this.message = 'Не правильно...';
+            }
+            this.iterations++;
+            if (this.iterations < 10) {
+                setTimeout(() => {
+                    this.start();
+                }, 1000);
+            } else {
+                this.message = `ваш результат ` + this.userCount + ` из ` + this.iterations;
+                setTimeout(() => {
+                    this.iterations = '';
+                    this.userCount = 0;
+                    starList.forEach(star => star.classList.remove('_gold'));
+                }, 3000);
+            }
 
         },
-    }
-
+        changeFocus($event) {
+            /*
+            инпуты пронумерованы для смены фокуса
+            */
+            console.log($event.target.id);
+            let id = $event.target.id;
+            console.log(id);
+            let nextFocus = parseInt(id) + 1;
+            console.log(nextFocus);
+            const nextFocusElement = document.getElementById(nextFocus);
+            nextFocusElement.focus();
+        }
+    },
+    components: { StarsComponent }
 }
 </script>
 

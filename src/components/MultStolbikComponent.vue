@@ -1,58 +1,92 @@
 <template>
-    <h2>MultStolbikComponent</h2>
-    <button @click="start">start</button>
-    <form action="#">
-        <div class="stolbikBox">
-            <div class="userInputHelpBox">
-                <input type="number" class="helpUserInput" :class="{ showInputBorder: isBorder }">
-                <input type="number" class="helpUserInput" :class="{ showInputBorder: isBorder }">
-                <input type="number" class="helpUserInput" :class="{ showInputBorder: isBorder }">
-                <input disabled type="number" class="helpUserInput" :class="{ showInputBorder: isBorder }">
-            </div>
-            <div class="first-stolbik">
-                <div v-for="(item, index) in firstList" :key="index" class="number" :class="{ animation: hasAnimation }">{{
-                    item }}</div>
-                <div class="operand" :class="{ animation: hasAnimation }">{{ operandMult }}</div>
+    <div class="main">
+        <!-- <h2>MultStolbikComponent</h2> -->
+        <StarsComponent />
+
+        <button class="btn-calc" @click="start">start</button>
+
+        <div class="count" id="scrollHere"> Счёт = {{ userCount }}</div>
+        <form action="#">
+
+            <div class="stolbikBox">
+                <div class="first-stolbik relative">
+                    <div class="number">
+                        <p :class="{ animation: hasAnimation }">{{
+                            firstList[0] }}</p>
+                    </div>
+                    <div class="number">
+                        <p :class="{ animation: hasAnimation }">{{
+                            firstList[1] }}</p>
+                    </div>
+                    <div class="number">
+                        <p :class="{ animation: hasAnimation }">{{
+                            firstList[2] }}</p>
+                    </div>
+
+                </div>
+                <div class="operand-mult">х</div>
+                <div class="second-stolbik">
+
+                    <div class="number">
+                        <p :class="{ animation: hasAnimation }">{{
+                            secondList[0] }}</p>
+                    </div>
+                    <div class="number">
+                        <p :class="{ animation: hasAnimation }">{{
+                            secondList[1] }}</p>
+                    </div>
+
+                </div>
+                <div class="underline" :class="{ showUnderline: isBorder }"></div>
+
+                <div class="userInputBox relative">
+                    <input @keyup.enter="changeFocusSecondLine()" type="number" class="userInput"
+                        :class="{ showInputBorder: isBorder }">
+                    <input @keyup.enter="changeFocus($event)" type="number" class="userInput"
+                        :class="{ showInputBorder: isBorder }">
+                    <input @keyup.enter="changeFocus($event)" type="number" class="userInput"
+                        :class="{ showInputBorder: isBorder }">
+                    <input @keyup.enter="changeFocus($event)" id="startHere" type="number" class="userInput"
+                        :class="{ showInputBorder: isBorder }">
+
+                </div>
+                <div class="operand-plus">+</div>
+                <div class="userInputBox userInput2Box">
+                    <input @keyup.enter="changeFocusResultLine()" type="number" class="userInput" :class="{ showInporder }">
+                    <input @keyup.enter="changeFocus($event)" type="number" class="userInput"
+                        :class="{ showInputBorder: isBorder }">
+                    <input @keyup.enter="changeFocus($event)" type="number" class="userInput"
+                        :class="{ showInputBorder: isBorder }">
+                    <input @keyup.enter="changeFocus($event)" id="startSecondLine" type="number" class="userInput"
+                        :class="{ showInputBorder: isBorder }">
+                    <input disabled type="number" class="userInput">
+                </div>
+                <div class="underline" :class="{ showUnderline: isBorder }"></div>
+                <div class="userInputBox">
+                    <input @keyup.enter="goToCheckBtn" v-model="userResTenThousand" type="number" class="userInput"
+                        :class="{ showInputBorder: isBorder }">
+                    <input @keyup.enter="changeFocus($event)" v-model="userResThousand" type="number" class="userInput"
+                        :class="{ showInputBorder: isBorder }">
+                    <input @keyup.enter="changeFocus($event)" v-model="userResHundred" type="number" class="userInput"
+                        :class="{ showInputBorder: isBorder }">
+                    <input @keyup.enter="changeFocus($event)" v-model="userResTen" type="number" class="userInput"
+                        :class="{ showInputBorder: isBorder }">
+                    <input @keyup.enter="changeFocus($event)" id="startResultLine" v-model="userResUnit" type="number"
+                        class="userInput" :class="{ showInputBorder: isBorder }">
+                </div>
             </div>
 
-            <div class="second-stolbik">
-                <div v-for="(item, index) in secondList" :key="index" class="number" :class="{ animation: hasAnimation }">{{
-                    item }}</div>
-            </div>
-            <div class="underline" :class="{ showUnderline: isBorder }"></div>
+            <button class="btn-calc btn-check" type="reset" @click="check">check</button>
+        </form>
 
-            <div class="userInputBox relative">
-                <input type="number" class="userInput" :class="{ showInputBorder: isBorder }">
-                <input type="number" class="userInput" :class="{ showInputBorder: isBorder }">
-                <input type="number" class="userInput" :class="{ showInputBorder: isBorder }">
-                <input type="number" class="userInput" :class="{ showInputBorder: isBorder }">
-                <div class="operand-plus" :class="{ animation: hasAnimation }">{{ operandPlus }}</div>
-            </div>
-            <div class="userInputBox userInput2Box">
-                <input type="number" class="userInput" :class="{ showInputBorder: isBorder }">
-                <input type="number" class="userInput" :class="{ showInputBorder: isBorder }">
-                <input type="number" class="userInput" :class="{ showInputBorder: isBorder }">
-                <input type="number" class="userInput" :class="{ showInputBorder: isBorder }">
-                <input disabled type="number" class="userInput">
-            </div>
-            <div class="underline" :class="{ showUnderline: isBorder }"></div>
-            <div class="userInputBox">
-                <input v-model="userResTenThousand" type="number" class="userInput" :class="{ showInputBorder: isBorder }">
-                <input v-model="userResThousand" type="number" class="userInput" :class="{ showInputBorder: isBorder }">
-                <input v-model="userResHundred" type="number" class="userInput" :class="{ showInputBorder: isBorder }">
-                <input v-model="userResTen" type="number" class="userInput" :class="{ showInputBorder: isBorder }">
-                <input v-model="userResUnit" type="number" class="userInput" :class="{ showInputBorder: isBorder }">
-            </div>
-        </div>
+        <div class="message" :class="{ animation: !hasAnimation }">{{ message }}</div>
 
-        <button type="reset" @click="check">check</button>
-    </form>
-
-    <div class="message" :class="{ animation: !hasAnimation }">{{ message }}</div>
-    <div> Счёт = {{ userCount }}</div>
+    </div>
 </template>
 
 <script>
+import StarsComponent from './StarsComponent.vue';
+
 export default {
     data() {
         return {
@@ -62,8 +96,6 @@ export default {
             second: null,
             firstList: [],
             secondList: [],
-            operandPlus: '',
-            operandMult: '',
             result: null,
             userResTenThousand: '',
             userResThousand: '',
@@ -73,15 +105,20 @@ export default {
             userResult: '',
             message: '',
             userCount: 0,
+            iterations: 0,
             max: 999,
             min: 100,
             max2: 99,
             min2: 11,
             smth: '',
-        }
+        };
     },
     methods: {
         start() {
+            const element = document.getElementById('scrollHere');
+            element.scrollIntoView({ behavior: 'smooth' });
+            const startInput = document.getElementById('startHere');
+            startInput.focus();
             this.isBorder = true;
             this.hasAnimation = true;
             this.userResTenThousand = '';
@@ -96,32 +133,57 @@ export default {
             this.firstList = String(this.first).split('');
             this.secondList = String(this.second).split('');
             this.result = this.first * this.second;
-            console.log(this.result);
             this.operandPlus = '+';
             this.operandMult = 'X';
-
         },
         check() {
             this.hasAnimation = false;
+            const starList = document.querySelectorAll('.front-star');
             this.userResult = Number(String(this.userResTenThousand) + String(this.userResThousand) + String(this.userResHundred)
                 + String(this.userResTen) + String(this.userResUnit));
             console.log(this.userResult);
-
             if (this.result == this.userResult) {
-                this.message = 'Верно'
+                this.message = 'Правильно!';
                 this.userCount++;
-            } else {
-                this.message = 'Упсссс';
-                this.userCount--;
+                starList[this.iterations].classList.add('_gold');
             }
-            setTimeout(() => {
-                this.start()
-            }, 1000);
-
+            else {
+                this.message = 'Не правильно...';
+            }
+            this.iterations++;
+            if (this.iterations < 10) {
+                setTimeout(() => {
+                    this.start();
+                }, 1000);
+            }
+            else {
+                this.message = `ваш результат ` + this.userCount + ` из ` + this.iterations;
+                setTimeout(() => {
+                    this.iterations = '';
+                    this.userCount = 0;
+                    starList.forEach(star => star.classList.remove('_gold'));
+                }, 3000);
+            }
         },
-
-    }
-
+        changeFocus($event) {
+            console.log($event.target);
+            console.log($event.target.previousSibling);
+            $event.target.previousSibling.focus();
+        },
+        changeFocusSecondLine() {
+            const startSecondLine = document.getElementById('startSecondLine');
+            startSecondLine.focus();
+        },
+        changeFocusResultLine() {
+            const startResultLine = document.getElementById('startResultLine');
+            startResultLine.focus();
+        },
+        goToCheckBtn() {
+            const checkBtn = document.querySelector('.btn-check');
+            checkBtn.focus();
+        }
+    },
+    components: { StarsComponent }
 }
 </script>
 
@@ -145,11 +207,18 @@ export default {
     position: relative;
 }
 
+.operand-mult {
+    position: absolute;
+    top: 40px;
+    left: 64px;
+    font-size: 37px;
+}
+
 .operand-plus {
 
     position: absolute;
-    left: -13px;
-    top: 32px;
-    font-size: 41px;
+    left: -67px;
+    top: 179px;
+    font-size: 52px;
 }
 </style>

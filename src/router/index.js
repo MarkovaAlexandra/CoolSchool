@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import UserStatisticComponent from '@/components/UserStatisticComponent.vue';
+import HomeComponent from '@/components/HomeComponent.vue';
 import Plus10Component from '@/components/Plus10Component.vue';
 import Minus10Component from '@/components/Minus10Component.vue';
 import PlusNoTransferComponent from '@/components/PlusNoTransferComponent.vue';
@@ -11,6 +11,8 @@ import MinusStolbikComponent from '@/components/MinusStolbikComponent.vue'
 import MultStolbikComponent from '@/components/MultStolbikComponent.vue'
 import DivStolbikNoRemainderComponent from '@/components/DivStolbikNoRemainderComponent.vue'
 import DivStolbikComponent from '@/components/DivStolbikComponent.vue'
+import TasksComponent from '@/components/TasksComponent.vue'
+import ConfidentionalPolicy from '@/components/ConfidentionalPolicy.vue'
 
 
 
@@ -19,7 +21,12 @@ const routes = [
     {
         path: '/',
         name: 'Home',
-        component: UserStatisticComponent,
+        component: HomeComponent,
+    },
+    {
+        path: '/tasks',
+        name: 'tasts',
+        component: TasksComponent,
     },
     {
         path: '/plus',
@@ -76,15 +83,19 @@ const routes = [
         name: 'divstolbik',
         component: DivStolbikComponent,
     },
+    {
+        path: '/confidentional',
+        name: 'confidentionalPolicy',
+        component: ConfidentionalPolicy,
+    }
 ];
 
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes,
     scrollBehavior(to, from, savedPosition) {
-        return {
-            top: 0
-        }
+
+        return { top: 0 }
     }
 })
 export default router;

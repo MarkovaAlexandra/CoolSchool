@@ -26,6 +26,10 @@
   text-decoration: none;
 }
 
+.main {
+  flex: 1;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -36,6 +40,12 @@ body {
   background-size: cover;
 }
 
+@media (max-width: 767px) {
+  body {
+    background-image: none;
+    background-color: #8DC3F2;
+  }
+}
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -50,16 +60,25 @@ input[type=number]:focus {
   -moz-appearance: textfield;
 }
 
+.center {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
 .btn-calc {
   padding: 16px;
-  border-radius: 25px;
+  width: 200px;
+  margin-bottom: 25px;
+  margin-top: 25px;
+  border-radius: 10px;
   text-decoration: none;
-  background-color: #fbe284;
+  background-color: #F2BBCF;
   position: relative;
-  border: 3px solid black;
+  border: 1px solid black;
   transition: all 0.3s ease;
   color: #32023D;
-  font-size: 20px;
+  font-size: 30px;
+  cursor: pointer;
 }
 
 .btn-calc:hover {
@@ -72,9 +91,9 @@ input[type=number]:focus {
 
 input {
   padding: 0;
-  border: none;
+  border: 1px solid black;
   text-align: center;
-  background-color: transparent;
+  background-color: #ffF;
   font-size: 40px;
 }
 
@@ -97,12 +116,13 @@ input {
 .first,
 .second,
 .operand-strochniy,
-.equal {
+.equal,
+.number {
   height: 60px;
   width: 60px;
   font-size: 40px;
   border: 1px solid black;
-  background-color: #ffdbe8;
+  background-color: #ffF;
 }
 
 .animation {
@@ -169,6 +189,7 @@ input {
 .stolbikBox {
   width: 300px;
   margin: 0 auto;
+  position: relative;
 }
 
 .first-stolbik,
@@ -178,12 +199,19 @@ input {
   gap: 8px;
   justify-content: end;
   margin-bottom: 10px;
-  position: relative;
 }
 
 .operand {
   position: absolute;
   font-size: 58px;
-  top: 34px;
+  top: 72px;
   left: 60px;
+}
+
+.calc-btn-box {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
 }/*# sourceMappingURL=style.css.map */

@@ -1,18 +1,19 @@
 <template>
-  <TaskComponent />
+  <HeaderComponent />
+  <RouterView />
   <FooterComponent />
 </template>
 
 <script>
+import HeaderComponent from './components/HeaderComponent.vue';
 
-import TaskComponent from './components/TasksComponent.vue'
 import FooterComponent from './components/FooterComponent.vue';
 
 
 export default {
   name: 'App',
   components: {
-    TaskComponent,
+    HeaderComponent,
     FooterComponent,
   }
 }
@@ -20,11 +21,15 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Montserrat", sans-serif;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  /* margin-top: 60px; */
 }
 </style>

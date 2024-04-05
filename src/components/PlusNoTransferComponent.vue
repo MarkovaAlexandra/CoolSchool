@@ -1,26 +1,45 @@
 <template>
-    <h2>PlusNoTransferComponent</h2>
-    <div>
+    <div class="main">
+        <!-- <h2>PlusNoTransferComponent</h2> -->
+        <StarsComponent />
+        <button class="btn-calc" @click="start">start</button>
+        <div class="strochnie-vichisleniya">
 
-        <div class="strochnie-vichisleniya"><button class="btn-calc" @click="start">start</button>
-            <div class="first" :class="{ animation: hasAnimation }">{{ first }}</div>
-            <div class="operand-strochniy" :class="{ animation: hasAnimation }">{{ operand }}</div>
-            <div class="second" :class="{ animation: hasAnimation }">{{ second }}</div>
-            <div class="equal">=</div>
-            <input class="userInput" :class="{ showInputBorder: hasAnimation }" @keyup.enter="check" type="number"
-                v-model="userResult">
-            <button class="btn-calc" @click="check">check</button>
+            <div class="first">
+                <p :class="{ animation: hasAnimation }">{{ first }}</p>
+            </div>
+            <div class="operand-strochniy">
+                <p :class="{ animation: hasAnimation }">{{ operand }}</p>
+            </div>
+            <div class="second">
+                <p :class="{ animation: hasAnimation }">{{ second }}</p>
+            </div>
+            <div class="equal">
+                <p :class="{ animation: hasAnimation }">=</p>
+            </div>
+            <input id="startHere" class="userInput" :class="{ showInputBorder: hasAnimation }" @keyup.enter="check"
+                type="number" v-model="userResult">
+            <!-- <button class="btn-calc" @click="check">check</button> -->
+
         </div>
-        <div class="message" :class="{ animation: hasAnimation }"> {{ message }}</div>
-        <div> Счёт = {{ userCount }}</div>
-
+        <div class="message" :class="{ animation: !hasAnimation }"> {{ message }}</div>
+        <div v-show="this.picture == 'right'" :class="{ animation: !hasAnimation }"><img width="350" :src=right
+                alt="Верно!"></div>
+        <div v-show="this.picture == 'wrong'" :class="{ animation: !hasAnimation }"><img width="350" :src=wrong
+                alt="Неверно"></div>
+        <div class="count"> Счёт = {{ userCount }}</div>
     </div>
 </template>
 
 <script>
+import StarsComponent from './StarsComponent.vue';
+
 export default {
     data() {
         return {
+            right: require('@/assets/img/smile.png'),
+            wrong: require('@/assets/img/sad.png'),
+
             hasAnimation: false,
             first: null,
             max: 88,
@@ -32,10 +51,15 @@ export default {
             userResult: '',
             message: '',
             userCount: 0,
+            iterations: 0,
+            picture: undefined,
         }
     },
     methods: {
         start() {
+            const start = document.getElementById('startHere');
+            start.focus();
+            this.picture = undefined;
             this.hasAnimation = true;
             this.userResult = '',
                 this.message = '',
@@ -50,21 +74,42 @@ export default {
             this.result = this.first + this.second;
             this.operand = '+';
         },
+
         check() {
             this.hasAnimation = false;
+            const starList = document.querySelectorAll('.front-star');
             if (this.result == this.userResult) {
-                this.message = 'Верно'
+                this.message = 'Правильно!';
+                this.picture = 'right';
                 this.userCount++;
+                starList[this.iterations].classList.add('_gold');
             } else {
-                this.message = 'Упсссс';
-                this.userCount--;
-            }
-            setTimeout(() => {
-                this.start()
-            }, 1000);
+                this.message = 'Не правильно...';
+                this.picture = 'wrong';
 
+            }
+            this.iterations++;
+            if (this.iterations < 10) {
+                setTimeout(() => {
+                    this.start()
+                }, 1000);
+            }
+            else {
+                this.message = `ваш результат ` + this.userCount + ` из ` + this.iterations;
+                setTimeout(() => {
+                    // this.userCount = 0;
+                    this.iterations = '';
+                    this.first = '';
+                    this.second = '';
+                    this.operand = '';
+                    starList.forEach(star => star.classList.remove('_gold'));
+                }, 3000);
+            }
         },
 
+    },
+    components: {
+        StarsComponent,
     }
 }
 </script>

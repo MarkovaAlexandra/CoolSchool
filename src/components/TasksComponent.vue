@@ -1,13 +1,16 @@
 <template>
-    <h2>TasksComponent</h2>
-    <div>
+    <div class="main">
+
         <div class="buttons-box center">
-            <button class="btn-task" v-for="link in links" :key="link.id"><router-link :to="link.url">{{ link.title
-            }}</router-link>
+            <button class="btn-task" v-for="link in links" :key="link.id"><router-link class="menu-link" :to=link.url>{{
+                link.title
+            }} </router-link>
             </button>
         </div>
 
-        <RouterView />
+
+
+
     </div>
 </template>
 
@@ -18,7 +21,7 @@ export default {
             links: [
                 {
                     id: 1,
-                    title: 'Home',
+                    title: 'На главную',
                     url: '/',
                 },
                 {
@@ -80,8 +83,10 @@ export default {
             ],
             background: require('@/assets/img/Background_blue.jpg'),
         }
-    }
+    },
+
 }
+
 </script>
 
 <style scoped>
@@ -95,7 +100,8 @@ export default {
 }
 
 .btn-task {
-    padding: 16px;
+    /* padding: 16px; */
+    min-height: 80px;
     border-radius: 25px;
     text-decoration: none;
     background-color: #ffdbe8;
@@ -104,6 +110,7 @@ export default {
     transition: all 0.3s ease;
     color: #32023D;
     font-size: 20px;
+    font-weight: 600;
 }
 
 .btn-task:hover {
