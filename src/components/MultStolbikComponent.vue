@@ -94,7 +94,7 @@
 
         </form>
 
-       
+
 
     </div>
 </template>
@@ -216,8 +216,12 @@ export default {
             checkBtn.focus();
         }
     },
-    components: { StarsComponent }
+    components: { StarsComponent },
+
+
+
 }
+
 </script>
 
 

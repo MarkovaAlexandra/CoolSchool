@@ -215,6 +215,13 @@ export default {
 
         }
     },
+    onMounted: {
+        clearStarList() {
+            const starList = document.querySelectorAll('.front-star');
+            starList.forEach(star => star.classList.remove('_gold'));
+        }
+    },
+
     methods: {
         start() {
             let element = document.getElementById('scrollHere');

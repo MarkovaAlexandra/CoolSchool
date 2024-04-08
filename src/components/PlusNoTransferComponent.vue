@@ -1,5 +1,4 @@
 <template>
-    >
     <div class="main">
         <StarsComponent />
         <button class="btn-calc" @click="start">начать</button>
