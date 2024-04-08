@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHistory } from 'vue-router';
 import HomeComponent from '@/components/HomeComponent.vue';
 import Plus10Component from '@/components/Plus10Component.vue';
 import Minus10Component from '@/components/Minus10Component.vue';
