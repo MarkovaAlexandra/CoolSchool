@@ -1,5 +1,4 @@
 <template>
-
     <div class="main">
 
         <StarsComponent />
@@ -11,7 +10,7 @@
                 <div class="left">
                     <button id="scrollHere" class="btn-calc btn-check" type="reset" @click="check">проверить</button>
 
-                    <div class="count" id="scrollHere"> Счёт = {{ userCount }}</div>
+                    <div class="count"> Счёт = {{ userCount }}</div>
                 </div>
                 <div class="smile">
                     <div v-show="this.picture == 'right'" :class="{ animationSmile: !hasAnimation }"><img width="120"
@@ -20,6 +19,7 @@
                             :src=wrong alt="Неверно"></div>
                 </div>
             </div>
+            <div class="message" :class="{ animation: !hasAnimation }">{{ message }}</div>
 
             <div class="stolbikBox">
                 <div class="first-stolbik relative">
@@ -94,7 +94,7 @@
 
         </form>
 
-        <div class="message" :class="{ animation: !hasAnimation }">{{ message }}</div>
+       
 
     </div>
 </template>
@@ -146,7 +146,7 @@ export default {
     methods: {
         start() {
             const element = document.getElementById('scrollHere');
-            element.scrollIntoView({ behavior: 'smooth' });
+            element.scrollIntoView({ block: 'start', behavior: 'smooth' });
             const startInput = document.getElementById('startHere');
             startInput.focus();
             this.isBorder = true;

@@ -18,6 +18,7 @@
                             :src=wrong alt="Неверно"></div>
                 </div>
             </div>
+            <div class="message" :class="{ animation: !hasAnimation }">{{ message }}</div>
             <div class="stolbikBox">
                 <div class="userInputHelpBox">
                     <input id="3" @keyup.enter="changeFocus($event)" type="number" class="helpUserInput"
@@ -74,7 +75,7 @@
 
             </div>
         </form>
-        <div class="message" :class="{ animation: !hasAnimation }">{{ message }}</div>
+    
 
     </div>
 </template>

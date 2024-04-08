@@ -1,5 +1,4 @@
 <template>
-
     <div class="main">
 
         <StarsComponent />
@@ -18,6 +17,7 @@
                             :src=wrong alt="Неверно"></div>
                 </div>
             </div>
+            <div class="message" :class="{ animation: !hasAnimation }">{{ message }}</div>
             <div class="stolbikBox">
                 <div class="userInputHelpBox">
                     <input id="6" @keyup.enter="changeFocus($event)" type="number" class="helpUserInput"
@@ -77,7 +77,7 @@
 
 
         </form>
-        <div class="message" :class="{ animation: !hasAnimation }">{{ message }}</div>
+
     </div>
 </template>
 

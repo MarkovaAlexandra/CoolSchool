@@ -64,19 +64,19 @@ export default {
 }
 
 .header-info {
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 600;
 }
 
 h1 {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 600;
     padding: 16px 0;
 }
 
 .nav {
     min-height: 30px;
-    padding: 20px;
+    padding: 0 20px 20px;
     font-size: 24px;
     display: flex;
     justify-content: center;

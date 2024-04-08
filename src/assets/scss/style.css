@@ -28,6 +28,7 @@
 
 .main {
   flex: 1;
+  padding-top: 20px;
 }
 
 a {
@@ -94,12 +95,15 @@ input {
 
 .message {
   height: 50px;
-  font-size: 40px;
+  font-size: 30px;
+  font-weight: 600;
+  color: black;
 }
 
 .count {
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 600;
+  color: black;
 }
 
 .strochnie-vichisleniya {
@@ -107,6 +111,13 @@ input {
   justify-content: center;
   align-items: center;
   gap: 10px;
+  margin-bottom: 20px;
+}
+
+.result-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .first,
@@ -242,6 +253,7 @@ input {
 
 .smile {
   width: 120px;
+  height: 120px;
   display: flex;
   justify-content: center;
   align-items: center;

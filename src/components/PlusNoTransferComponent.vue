@@ -21,12 +21,19 @@
                 type="number" v-model="userResult">
 
         </div>
-        <div class="count"> Счёт = {{ userCount }}</div>
-        <div class="message" :class="{ animation: !hasAnimation }"> {{ message }} </div>
-        <div v-show="this.picture == 'right'" :class="{ animationSmile: !hasAnimation }"><img width="350" :src=right
-                alt="Верно!"></div>
-        <div v-show="this.picture == 'wrong'" :class="{ animationSmile: !hasAnimation }"><img width="350" :src=wrong
-                alt="Неверно"></div>
+        <div class="result-content center">
+            <div class="result-text">
+                <div class="count"> Счёт = {{ userCount }}</div>
+                <div class="message" :class="{ animation: !hasAnimation }"> {{ message }}</div>
+            </div>
+            <div class="smile">
+                <div v-show="this.picture == 'right'" :class="{ animationSmile: !hasAnimation }"><img width="120" :src=right
+                        alt="Верно!"></div>
+                <div v-show="this.picture == 'wrong'" :class="{ animationSmile: !hasAnimation }"><img width="120" :src=wrong
+                        alt="Неверно"></div>
+            </div>
+
+        </div>
 
     </div>
 </template>

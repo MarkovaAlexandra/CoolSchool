@@ -54,7 +54,7 @@
 .stars {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 5px;
     justify-content: center;
     align-items: center;
     margin-bottom: 25px;
@@ -62,20 +62,20 @@
 
 .star {
     position: relative;
-    width: 60px;
+    width: 35px;
 }
 
 .back-star {
     color: black;
-    font-size: 44px;
+    font-size: 34px;
 }
 
 .front-star {
     position: absolute;
     color: #fff;
-    font-size: 33px;
-    top: 5px;
-    left: 11px;
+    font-size: 26px;
+    top: 4px;
+    left: 4px;
 }
 
 ._gold {

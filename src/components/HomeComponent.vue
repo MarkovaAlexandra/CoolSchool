@@ -1,6 +1,6 @@
 <template>
     <div class="main center">
-        <h1 class="main__title"> Хочешь пятерку по математике?</h1>
+        <h2 class="main__title"> Хочешь пятерку по математике?</h2>
         <!-- <div class="main__subtitle"> ЧТО ТУТ НАПИСАТЬ?.</div> -->
         <div class="main__descr">
             Здесь ты сможешь быстро и легко выучить Таблицу Умножения,
@@ -30,8 +30,8 @@ export default {
 </script>
 <style>
 .main__title {
-    font-size: 42px;
-    margin-top: 60px;
+    font-size: 38px;
+    margin-top: 30px;
     margin-bottom: 30px;
     font-weight: 600;
 }
@@ -45,6 +45,7 @@ export default {
 .main__descr {
     margin-bottom: 30px;
     font-size: 24px;
-    line-height: 1.7;
+    line-height: 1.4;
+    font-weight: 500;
 }
 </style>

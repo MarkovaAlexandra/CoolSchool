@@ -17,7 +17,7 @@
                             :src=wrong alt="Неверно"></div>
                 </div>
             </div>
-
+            <div class="message" :class="{ animation: !hasAnimation }">{{ message }}</div>
 
             <div class="tren-content center">
 
@@ -161,7 +161,7 @@
 
 
         </form>
-        <div class="message" :class="{ animation: !hasAnimation }">{{ message }}</div>
+
 
 
     </div>
@@ -218,7 +218,7 @@ export default {
     methods: {
         start() {
             let element = document.getElementById('scrollHere');
-            element.scrollIntoView({ behavior: 'smooth' });
+            element.scrollIntoView({ block: 'start', behavior: 'smooth' });
             // this.isBorder = true;
             this.hasAnimation = true;
             this.picture = undefined;

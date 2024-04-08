@@ -101,7 +101,7 @@ export default {
     display: grid;
 
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 16px;
+    gap: 10px;
 
 }
 
@@ -115,7 +115,7 @@ export default {
     border: 3px solid black;
     transition: all 0.3s ease;
     color: #32023D;
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 600;
 }
 

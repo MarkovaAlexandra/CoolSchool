@@ -17,7 +17,7 @@
                             :src=wrong alt="Неверно"></div>
                 </div>
             </div>
-
+            <div class="message" :class="{ animation: !hasAnimation }">{{ message }}</div>
             <div class="tren-content center">
 
                 <table>
@@ -171,7 +171,7 @@
             </div>
 
         </form>
-        <div class="message" :class="{ animation: !hasAnimation }">{{ message }}</div>
+
 
     </div>
 </template>

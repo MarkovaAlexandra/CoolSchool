@@ -19,10 +19,6 @@
 
 
 <style>
-.footer-section {
-    margin: 30px 0;
-}
-
 .footer {
     height: 50px;
     display: flex;
