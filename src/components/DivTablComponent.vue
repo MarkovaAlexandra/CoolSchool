@@ -1,12 +1,5 @@
 <template>
-    <Head>
-        <title> Таблица деления и умножения, онлайн-тренажер для начальной школы </title>
-        <meta name="description"
-            content="Онлайн-тренажер по математике для закрепления таблицы умножения и деления при помощи специально разработанных алгоритмов генерации математических примеров. Предназначен для учеников начальной школы, а также родителей и преподавателей. Для работы в школе и дома.">
-    </Head>
-
     <div class="main">
-        <!-- <h2>DivTablComponent</h2> -->
         <StarsComponent />
         <button class="btn-calc" @click="start">начать</button>
         <div class="strochnie-vichisleniya">
@@ -37,15 +30,21 @@
     </div>
 </template>
 
-<script lang="ts" setup>
-import { Head } from '@unhead/vue/components'
-</script>
 
 <script>
 import StarsComponent from './StarsComponent.vue';
 
 
 export default {
+    head: {
+        title: '5тематика | таблица умножения и деления',
+        meta: [
+            {
+                name: 'description',
+                content: 'Онлайн-тренажер по математике для отработки и закрепления таблицы умножения и деления при помощи специально разработанных алгоритмов генерации математических примеров. Предназначен для учеников начальной школы, а также родителей и преподавателей. Для работы в школе и дома."',
+            },
+        ],
+    },
     data() {
         return {
             right: require('@/assets/img/2.png'),

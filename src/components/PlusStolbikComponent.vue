@@ -1,13 +1,7 @@
 <template>
-    <Head>
-        <title> Сложение столбиком, онлайн-тренажер для отработки арифметических вычислений столбиком для начальной школы
-        </title>
-        <meta name="description"
-            content="Онлайн-тренажер по математике для отработки сложения столбиком при помощи специально разработанных алгоритмов генерации математических примеров. Предназначен для учеников начальной школы, а также родителей и преподавателей. Для работы в школе и дома.">
-    </Head>
+
     <div class="main">
 
-        <!-- <h2>PlusStolbikComponent</h2> -->
         <StarsComponent />
         <button class="btn-calc _movedLeft" @click="start">начать</button>
         <form action="#">
@@ -87,16 +81,24 @@
     </div>
 </template>
 
-<script lang="ts" setup>
-import { Head } from '@unhead/vue/components'
-</script>
+
 
 <script>
 import StarsComponent from './StarsComponent.vue';
-String()
+
 
 export default {
+    head: {
+        title: ' 5тематика | онлайн-тренажер по математике',
+        meta: [
+            {
+                name: 'description',
+                content: 'Онлайн-тренажер по математике для отработки навыков устного счета  и вычислений столбиком в начальной школе при помощи специально разработанных алгоритмов генерации математических примеров. Предназначен для учеников начальной школы, а также родителей и преподавателей. Для работы в школе и дома.',
+            },
+        ],
+    },
     data() {
+
         return {
             right: require('@/assets/img/2.png'),
             wrong: require('@/assets/img/1.png'),
@@ -180,7 +182,7 @@ export default {
 
             let id = $event.target.id;
             let nextFocus = parseInt(id) + 1;
-            const nextFocusElement = document.getElementById(String(nextFocus));
+            const nextFocusElement = document.getElementById(nextFocus);
             nextFocusElement.focus();
         }
     },

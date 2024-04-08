@@ -1,9 +1,4 @@
 <template>
-    <Head>
-        <title> Деление столбиком, деление столбиком без остатка, онлайн-тренажер </title>
-        <meta name="description"
-            content="Онлайн-тренажер по математике для отработки деления столбиком при помощи специально разработанных алгоритмов генерации математических примеров. Предназначен для учеников начальной школы, а также родителей и преподавателей. Для работы в школе и дома.">
-    </Head>
     <div class="main">
         <StarsComponent />
         <button class="btn-calc _movedLeft" @click="start">начать</button>
@@ -181,14 +176,21 @@
     </div>
 </template>
 
-<script lang="ts" setup>
-import { Head } from '@unhead/vue/components'
-</script>
+
 
 <script>
 import StarsComponent from './StarsComponent.vue';
 
 export default {
+    head: {
+        title: ' 5тематика | Деление столбиком, онлайн-тренажер',
+        meta: [
+            {
+                name: 'description',
+                content: 'Онлайн-тренажер по математике для отработки деления столбиком при помощи специально разработанных алгоритмов генерации математических примеров. Предназначен для учеников начальной школы, а также родителей и преподавателей. Для работы в школе и дома."',
+            },
+        ],
+    },
     data() {
         return {
             right: require('@/assets/img/2.png'),
