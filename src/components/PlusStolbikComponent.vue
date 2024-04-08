@@ -87,9 +87,13 @@
     </div>
 </template>
 
+<script lang="ts" setup>
+import { Head } from '@unhead/vue/components'
+</script>
+
 <script>
 import StarsComponent from './StarsComponent.vue';
-import { Head } from '@unhead/vue/components';
+String()
 
 export default {
     data() {
@@ -161,7 +165,7 @@ export default {
                 console.log(this.iterations);
                 setTimeout(() => {
                     this.start();
-                }, 1000);
+                }, 2000);
             }
             else {
                 this.message = `ваш результат ` + this.userCount + ` из ` + this.iterations;
@@ -173,12 +177,10 @@ export default {
             /*
             инпуты пронумерованы для смены фокуса
             */
-            // console.log($event.target.id);
+
             let id = $event.target.id;
-            // console.log(id);
             let nextFocus = parseInt(id) + 1;
-            // console.log(nextFocus);
-            const nextFocusElement = document.getElementById(nextFocus);
+            const nextFocusElement = document.getElementById(String(nextFocus));
             nextFocusElement.focus();
         }
     },
@@ -194,12 +196,4 @@ export default {
     border: 1px solid transparent;
     background-color: transparent;
 }
-
-/* .number {
-    width: 60px;
-    height: 60px;
-    border: 1px solid red;
-    font-size: 40px;
-    background-color: #ffdbe8;
-} */
 </style>

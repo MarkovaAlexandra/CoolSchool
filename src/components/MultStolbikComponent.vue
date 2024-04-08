@@ -69,7 +69,8 @@
                 </div>
                 <div class="operand-plus">+</div>
                 <div class="userInputBox userInput2Box">
-                    <input @keyup.enter="changeFocusResultLine()" type="number" class="userInput" :class="{ showInporder }">
+                    <input @keyup.enter="changeFocusResultLine()" type="number" class="userInput"
+                        :class="{ showInputBorder: isBorder }">
                     <input @keyup.enter="changeFocus($event)" type="number" class="userInput"
                         :class="{ showInputBorder: isBorder }">
                     <input @keyup.enter="changeFocus($event)" type="number" class="userInput"
@@ -102,9 +103,13 @@
     </div>
 </template>
 
+<script lang="ts" setup>
+import { Head } from '@unhead/vue/components'
+</script>
+
 <script>
 import StarsComponent from './StarsComponent.vue';
-import { Head } from '@unhead/vue/components';
+
 
 export default {
     data() {
@@ -204,7 +209,7 @@ export default {
             startResultLine.focus();
         },
         goToCheckBtn() {
-            const checkBtn = document.querySelector('.btn-check');
+            const checkBtn = document.getElementById('scrollHere');
             checkBtn.focus();
         }
     },

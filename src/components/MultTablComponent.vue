@@ -1,4 +1,9 @@
 <template>
+    <Head>
+        <title> Таблица деления и умножения, онлайн-тренажер для начальной школы </title>
+        <meta name="description"
+            content="Онлайн-тренажер по математике для закрепления таблицы умножения и деления при помощи специально разработанных алгоритмов генерации математических примеров. Предназначен для учеников начальной школы, а также родителей и преподавателей. Для работы в школе и дома.">
+    </Head>
     <div class="main">
 
         <StarsComponent />
@@ -29,6 +34,9 @@
 
     </div>
 </template>
+<script lang="ts" setup>
+import { Head } from '@unhead/vue/components'
+</script>
 
 <script>
 import StarsComponent from './StarsComponent.vue';

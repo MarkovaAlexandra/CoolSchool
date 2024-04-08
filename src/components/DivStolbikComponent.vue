@@ -173,10 +173,13 @@
 </template>
 
 
+<script lang="ts" setup>
+import { Head } from '@unhead/vue/components'
+</script>
+
+
 <script>
 import StarsComponent from './StarsComponent.vue';
-import { Head } from '@unhead/vue/components';
-
 export default {
     mounted() {
 
@@ -244,7 +247,7 @@ export default {
             console.log(this.userResult);
             console.log(this.result);
 
-            if (this.result == this.userResult & this.ostatok == this.userOstatok) {
+            if (this.result == this.userResult && this.ostatok == this.userOstatok) {
                 this.message = 'Правильно!'
                 this.userCount++;
                 this.picture = 'right';

@@ -83,9 +83,13 @@
     </div>
 </template>
 
+<script lang="ts" setup>
+import { Head } from '@unhead/vue/components'
+</script>
+
 <script>
 import StarsComponent from './StarsComponent.vue';
-import { Head } from '@unhead/vue/components';
+
 
 export default {
     data() {
@@ -174,7 +178,7 @@ export default {
             console.log(id);
             let nextFocus = parseInt(id) + 1;
             console.log(nextFocus);
-            const nextFocusElement = document.getElementById(nextFocus);
+            const nextFocusElement = document.getElementById(String(nextFocus));
             nextFocusElement.focus();
         }
     },

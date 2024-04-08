@@ -36,9 +36,13 @@
     </div>
 </template>
 
+<script lang="ts" setup>
+import { Head } from '@unhead/vue/components'
+</script>
+
 <script>
 import StarsComponent from './StarsComponent.vue';
-import { Head } from '@unhead/vue/components';
+
 export default {
     data() {
         return {
