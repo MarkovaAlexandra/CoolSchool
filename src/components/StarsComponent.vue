@@ -57,6 +57,7 @@
     gap: 16px;
     justify-content: center;
     align-items: center;
+    margin-bottom: 25px;
 }
 
 .star {

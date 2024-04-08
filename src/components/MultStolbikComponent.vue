@@ -3,10 +3,22 @@
         <!-- <h2>MultStolbikComponent</h2> -->
         <StarsComponent />
 
-        <button class="btn-calc" @click="start">start</button>
+        <button class="btn-calc _movedLeft" @click="start">начать</button>
 
-        <div class="count" id="scrollHere"> Счёт = {{ userCount }}</div>
         <form action="#">
+            <div class="smile-box center">
+                <div class="left">
+                    <button id="scrollHere" class="btn-calc btn-check" type="reset" @click="check">проверить</button>
+
+                    <div class="count" id="scrollHere"> Счёт = {{ userCount }}</div>
+                </div>
+                <div class="smile">
+                    <div v-show="this.picture == 'right'" :class="{ animationSmile: !hasAnimation }"><img width="120"
+                            :src=right alt="Верно!"></div>
+                    <div v-show="this.picture == 'wrong'" :class="{ animationSmile: !hasAnimation }"><img width="120"
+                            :src=wrong alt="Неверно"></div>
+                </div>
+            </div>
 
             <div class="stolbikBox">
                 <div class="first-stolbik relative">
@@ -37,8 +49,8 @@
                     </div>
 
                 </div>
-                <div class="underline" :class="{ showUnderline: isBorder }"></div>
-
+                <!-- <div class="underline" :class="{ showUnderline: isBorder }"></div> -->
+                <div class="underline showUnderline"></div>
                 <div class="userInputBox relative">
                     <input @keyup.enter="changeFocusSecondLine()" type="number" class="userInput"
                         :class="{ showInputBorder: isBorder }">
@@ -61,7 +73,8 @@
                         :class="{ showInputBorder: isBorder }">
                     <input disabled type="number" class="userInput">
                 </div>
-                <div class="underline" :class="{ showUnderline: isBorder }"></div>
+                <!-- <div class="underline" :class="{ showUnderline: isBorder }"></div> -->
+                <div class="underline showUnderline"></div>
                 <div class="userInputBox">
                     <input @keyup.enter="goToCheckBtn" v-model="userResTenThousand" type="number" class="userInput"
                         :class="{ showInputBorder: isBorder }">
@@ -76,7 +89,7 @@
                 </div>
             </div>
 
-            <button class="btn-calc btn-check" type="reset" @click="check">check</button>
+
         </form>
 
         <div class="message" :class="{ animation: !hasAnimation }">{{ message }}</div>
@@ -90,8 +103,11 @@ import StarsComponent from './StarsComponent.vue';
 export default {
     data() {
         return {
+            right: require('@/assets/img/2.png'),
+            wrong: require('@/assets/img/1.png'),
             hasAnimation: false,
             isBorder: false,
+            picture: undefined,
             first: null,
             second: null,
             firstList: [],
@@ -121,6 +137,7 @@ export default {
             startInput.focus();
             this.isBorder = true;
             this.hasAnimation = true;
+            this.picture = undefined;
             this.userResTenThousand = '';
             this.userResThousand = '';
             this.userResHundred = '';
@@ -146,15 +163,17 @@ export default {
                 this.message = 'Правильно!';
                 this.userCount++;
                 starList[this.iterations].classList.add('_gold');
+                this.picture = 'right';
             }
             else {
                 this.message = 'Не правильно...';
+                this.picture = 'wrong';
             }
             this.iterations++;
             if (this.iterations < 10) {
                 setTimeout(() => {
                     this.start();
-                }, 1000);
+                }, 2000);
             }
             else {
                 this.message = `ваш результат ` + this.userCount + ` из ` + this.iterations;

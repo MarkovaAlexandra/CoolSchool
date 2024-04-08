@@ -2,7 +2,7 @@
     <div class="main">
         <!-- <h2>PlusNoTransferComponent</h2> -->
         <StarsComponent />
-        <button class="btn-calc" @click="start">start</button>
+        <button class="btn-calc" @click="start">начать</button>
         <div class="strochnie-vichisleniya">
 
             <div class="first">
@@ -22,12 +22,13 @@
             <!-- <button class="btn-calc" @click="check">check</button> -->
 
         </div>
-        <div class="message" :class="{ animation: !hasAnimation }"> {{ message }}</div>
-        <div v-show="this.picture == 'right'" :class="{ animation: !hasAnimation }"><img width="350" :src=right
-                alt="Верно!"></div>
-        <div v-show="this.picture == 'wrong'" :class="{ animation: !hasAnimation }"><img width="350" :src=wrong
-                alt="Неверно"></div>
         <div class="count"> Счёт = {{ userCount }}</div>
+        <div class="message" :class="{ animation: !hasAnimation }"> {{ message }} </div>
+        <div v-show="this.picture == 'right'" :class="{ animationSmile: !hasAnimation }"><img width="350" :src=right
+                alt="Верно!"></div>
+        <div v-show="this.picture == 'wrong'" :class="{ animationSmile: !hasAnimation }"><img width="350" :src=wrong
+                alt="Неверно"></div>
+
     </div>
 </template>
 
@@ -37,9 +38,8 @@ import StarsComponent from './StarsComponent.vue';
 export default {
     data() {
         return {
-            right: require('@/assets/img/smile.png'),
-            wrong: require('@/assets/img/sad.png'),
-
+            right: require('@/assets/img/2.png'),
+            wrong: require('@/assets/img/1.png'),
             hasAnimation: false,
             first: null,
             max: 88,
@@ -92,12 +92,12 @@ export default {
             if (this.iterations < 10) {
                 setTimeout(() => {
                     this.start()
-                }, 1000);
+                }, 2000);
             }
             else {
                 this.message = `ваш результат ` + this.userCount + ` из ` + this.iterations;
                 setTimeout(() => {
-                    // this.userCount = 0;
+                    this.userCount = 0;
                     this.iterations = '';
                     this.first = '';
                     this.second = '';

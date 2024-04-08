@@ -2,9 +2,21 @@
     <div class="main">
         <!-- <h2>MinusStolbikComponent</h2> -->
         <StarsComponent />
-        <button class="btn-calc" @click="start">start</button>
+        <button class="btn-calc _movedLeft" @click="start">начать</button>
         <form action="#">
+            <div class="smile-box center">
+                <div class="left">
+                    <button id="6" class="btn-calc" type="reset" @click="check">проверить</button>
 
+                    <div class="count" id="scrollHere"> Счёт = {{ userCount }}</div>
+                </div>
+                <div class="smile">
+                    <div v-show="this.picture == 'right'" :class="{ animationSmile: !hasAnimation }"><img width="120"
+                            :src=right alt="Верно!"></div>
+                    <div v-show="this.picture == 'wrong'" :class="{ animationSmile: !hasAnimation }"><img width="120"
+                            :src=wrong alt="Неверно"></div>
+                </div>
+            </div>
             <div class="stolbikBox">
                 <div class="userInputHelpBox">
                     <input id="3" @keyup.enter="changeFocus($event)" type="number" class="helpUserInput"
@@ -47,7 +59,8 @@
                     </div>
 
                 </div>
-                <div class="underline" :class="{ showUnderline: isBorder }"></div>
+                <!-- <div class="underline" :class="{ showUnderline: isBorder }"></div> -->
+                <div class="underline showUnderline"></div>
                 <div class="userInputBox">
                     <!-- <input @keyup.enter="changeFocus($event)" v-model="userResThousand" type="number" class="userInput"
                     :class="{ showInputBorder: isBorder }"> -->
@@ -58,11 +71,11 @@
                     <input id="2" @keyup.enter="changeFocus($event)" v-model="userResUnit" type="number" class="userInput"
                         :class="{ showInputBorder: isBorder }">
                 </div>
-                <button id="6" class="btn-calc" type="reset" @click="check">check</button>
+
             </div>
         </form>
         <div class="message" :class="{ animation: !hasAnimation }">{{ message }}</div>
-        <div class="count"> Счёт = {{ userCount }}</div>
+
     </div>
 </template>
 
@@ -72,6 +85,9 @@ import StarsComponent from './StarsComponent.vue';
 export default {
     data() {
         return {
+            right: require('@/assets/img/2.png'),
+            wrong: require('@/assets/img/1.png'),
+            picture: undefined,
             hasAnimation: false,
             isBorder: false,
             first: null,
@@ -94,12 +110,13 @@ export default {
     },
     methods: {
         start() {
-            // const element = document.getElementById('scrollHere');
-            // element.scrollIntoView({ behavior: 'smooth' });
+            const element = document.getElementById('scrollHere');
+            element.scrollIntoView({ behavior: 'smooth' });
             const start = document.getElementById('1');
             start.focus();
             this.hasAnimation = true;
             this.isBorder = true;
+            this.picture = undefined;
             this.userResThousand = '';
             this.userResHundred = '';
             this.userResTen = '';
@@ -122,15 +139,17 @@ export default {
                 this.message = 'Правильно!';
                 this.userCount++;
                 starList[this.iterations].classList.add('_gold');
+                this.picture = 'right';
             }
             else {
                 this.message = 'Не правильно...';
+                this.picture = 'wrong';
             }
             this.iterations++;
             if (this.iterations < 10) {
                 setTimeout(() => {
                     this.start();
-                }, 1000);
+                }, 2000);
             } else {
                 this.message = `ваш результат ` + this.userCount + ` из ` + this.iterations;
                 setTimeout(() => {

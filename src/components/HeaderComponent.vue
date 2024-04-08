@@ -1,7 +1,9 @@
 <template>
-    <div class="header">
-        <h1>5+ Пятематика 5+</h1>
-        <div class="header-info">Тренажер по арифметике для младшей школы</div>
+    <div class="header center">
+        <div class="header-info">{{ show }}</div>
+
+        <h1>Тренажер по арифметике для младшей школы</h1>
+
         <nav class="nav">
             <div class="menu">
                 <router-link to="/tasks" class="menu-link"> выбрать тему </router-link>
@@ -10,21 +12,58 @@
     </div>
 </template>
 
+
+<script>
+export default {
+    data() {
+        return {
+            textFull: '5+ Пятематика 5+',
+            textShort: 'Пятематика',
+            text: 'text',
+            window: 0,
+        }
+    },
+    methods: {
+        // showWindowSize() {
+        //     console.log(window.innerWidth)
+        // }
+    },
+    computed: {
+        show() {
+            this.window = window.innerWidth;
+            console.log(this.window)
+            if (this.window < 400) {
+                this.text = this.textShort;
+            }
+            else {
+                this.text = this.textFull;
+            }
+            console.log(this.text);
+            return this.text;
+        }
+
+
+
+    }
+
+}
+</script>
+
 <style>
 .header {
     padding-top: 16px;
 
 }
 
-h1 {
+.header-info {
     font-size: 40px;
-    flex: 600;
+    font-weight: 600;
 }
 
-.header-info {
+h1 {
     font-size: 28px;
     font-weight: 600;
-    padding: 16px;
+    padding: 16px 0;
 }
 
 .nav {

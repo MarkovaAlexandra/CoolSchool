@@ -5,11 +5,21 @@
         <StarsComponent />
 
 
-        <button id="scrollHere" class="btn-calc" @click="start">start</button>
+        <button class="btn-calc _movedLeft" @click="start">начать</button>
         <form id="mainForm" action="#">
-            <button class="btn-calc" type="reset" @click="check">check</button>
+            <div class="smile-box center">
+                <div class="left">
+                    <button id="scrollHere" class="btn-calc" type="reset" @click="check">проверить</button>
 
-            <div class="count"> Счёт = {{ userCount }}</div>
+                    <div class="count"> Счёт = {{ userCount }}</div>
+                </div>
+                <div class="smile">
+                    <div v-show="this.picture == 'right'" :class="{ animationSmile: !hasAnimation }"><img width="120"
+                            :src=right alt="Верно!"></div>
+                    <div v-show="this.picture == 'wrong'" :class="{ animationSmile: !hasAnimation }"><img width="120"
+                            :src=wrong alt="Неверно"></div>
+                </div>
+            </div>
 
 
             <div class="tren-content center">
@@ -172,7 +182,9 @@ export default {
 
     data() {
         return {
-            // hasAnimation: false,
+            right: require('@/assets/img/2.png'),
+            wrong: require('@/assets/img/1.png'),
+            hasAnimation: false,
             // isBorder: false,
             first: null,
             second: null,
@@ -195,6 +207,7 @@ export default {
             min: 100,
             max2: 50,
             min2: 2,
+            picture: undefined,
 
         }
     },
@@ -202,9 +215,9 @@ export default {
         start() {
             let element = document.getElementById('scrollHere');
             element.scrollIntoView({ behavior: 'smooth' });
-
             // this.isBorder = true;
-            // this.hasAnimation = true;
+            this.hasAnimation = true;
+            this.picture = undefined;
             this.userResTenThousand = '';
             this.userResThousand = '';
             this.userResHundred = '';
@@ -219,14 +232,14 @@ export default {
             this.secondList = String(this.second).split('');
             this.result = Math.floor(this.first / this.second);
             this.ostatok = this.first % this.second;
-            console.log(this.result);
-            console.log(this.ostatok);
-            console.log(this.firstList);
-            console.log(this.secondList);
+            // console.log(this.result);
+            // console.log(this.ostatok);
+            // console.log(this.firstList);
+            // console.log(this.secondList);
 
         },
         check() {
-            // this.hasAnimation = false;
+            this.hasAnimation = false;
 
             const starList = document.querySelectorAll('.front-star');
             this.userResult = Number(String(this.userResHundred)
@@ -237,16 +250,18 @@ export default {
             if (this.result == this.userResult & this.ostatok == this.userOstatok) {
                 this.message = 'Правильно!'
                 this.userCount++;
+                this.picture = 'right';
                 starList[this.iterations].classList.add('_gold');
             } else {
                 this.message = 'Не правильно';
+                this.picture = 'wrong';
 
             }
             this.iterations++;
             if (this.iterations < 10) {
                 setTimeout(() => {
                     this.start();
-                }, 1000);
+                }, 2000);
             }
             else {
                 this.message = `ваш результат ` + this.userCount + ` из ` + this.iterations;
@@ -284,15 +299,33 @@ td,
     height: 50px;
     border: 1px solid grey;
     border-radius: 5px;
-
-
-
-
-}
-
-.input-division {
     border: none;
 }
+
+@media(max-width:767px) {
+
+    td,
+    .input-division {
+        width: 40px;
+        height: 40px;
+        border: 1px solid grey;
+        border-radius: 5px;
+
+    }
+}
+
+@media(max-width:374px) {
+
+    td,
+    .input-division {
+        width: 36px;
+        height: 36px;
+        border: 1px solid grey;
+        border-radius: 5px;
+
+    }
+}
+
 
 .narrow-vertical {
     width: 3px;
@@ -318,6 +351,12 @@ td,
     background-color: #fff;
     font-size: 24px;
     font-weight: 700;
+}
+
+@media(max-width:768px) {
+    .white {
+        font-size: 16px;
+    }
 }
 
 .minus {

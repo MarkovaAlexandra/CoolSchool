@@ -34,7 +34,8 @@
 
 .footer-info {
 
-    font-size: 24px;
+    font-size: 20px;
     color: black;
+    font-weight: 600;
 }
 </style>

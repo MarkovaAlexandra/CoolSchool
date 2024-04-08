@@ -2,10 +2,9 @@
     <div class="main">
         <!-- <h2>MinusNoTransferComponent</h2> -->
         <StarsComponent />
-        <button class="btn-calc" @click="start">start</button>
+        <button class="btn-calc" @click="start">начать</button>
 
         <div class="strochnie-vichisleniya">
-
             <div class="first">
                 <p :class="{ animation: hasAnimation }">{{ first }}</p>
             </div>
@@ -22,9 +21,14 @@
                 type="number" v-model="userResult">
             <!-- <button class="btn-calc" @click="check">check</button> -->
         </div>
+
+        <div class="count"> Счёт = {{ userCount }}</div>
+        <div class="message" :class="{ animation: !hasAnimation }"> {{ message }}</div>
+        <div v-show="this.picture == 'right'" :class="{ animationSmile: !hasAnimation }"><img width="350" :src=right
+                alt="Верно!"></div>
+        <div v-show="this.picture == 'wrong'" :class="{ animationSmile: !hasAnimation }"><img width="350" :src=wrong
+                alt="Неверно"></div>
     </div>
-    <div class="message" :class="{ animation: !hasAnimation }"> {{ message }}</div>
-    <div class="count"> Счёт = {{ userCount }}</div>
 </template>
 
 <script>
@@ -33,6 +37,8 @@ import StarsComponent from './StarsComponent.vue';
 export default {
     data() {
         return {
+            right: require('@/assets/img/2.png'),
+            wrong: require('@/assets/img/1.png'),
             hasAnimation: false,
             first: null,
             max: 99,
@@ -45,12 +51,14 @@ export default {
             iterations: 0,
             message: '',
             userCount: 0,
+            picture: undefined,
         };
     },
     methods: {
         start() {
             const start = document.getElementById('startHere');
             start.focus();
+            this.picture = undefined;
             this.hasAnimation = true;
             this.userResult = '',
                 this.message = '',
@@ -71,16 +79,18 @@ export default {
             if (this.result == this.userResult) {
                 this.message = 'Правильно!';
                 this.userCount++;
+                this.picture = 'right';
                 starList[this.iterations].classList.add('_gold');
             }
             else {
                 this.message = 'Не правильно...';
+                this.picture = 'wrong';
             }
             this.iterations++;
             if (this.iterations < 10) {
                 setTimeout(() => {
                     this.start();
-                }, 1000);
+                }, 2000);
             }
             else {
                 this.message = `ваш результат ` + this.userCount + ` из ` + this.iterations;

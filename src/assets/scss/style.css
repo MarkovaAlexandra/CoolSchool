@@ -38,14 +38,9 @@ a {
 body {
   background-image: url("@/assets/img/Background_blue.jpg");
   background-size: cover;
+  background-position: center;
 }
 
-@media (max-width: 767px) {
-  body {
-    background-image: none;
-    background-color: #8DC3F2;
-  }
-}
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -63,13 +58,13 @@ input[type=number]:focus {
 .center {
   max-width: 1140px;
   margin: 0 auto;
+  padding: 0 5px;
 }
 
 .btn-calc {
-  padding: 16px;
+  padding: 8px 16px;
   width: 200px;
   margin-bottom: 25px;
-  margin-top: 25px;
   border-radius: 10px;
   text-decoration: none;
   background-color: #F2BBCF;
@@ -104,6 +99,7 @@ input {
 
 .count {
   font-size: 40px;
+  font-weight: 600;
 }
 
 .strochnie-vichisleniya {
@@ -117,6 +113,7 @@ input {
 .second,
 .operand-strochniy,
 .equal,
+.userInput,
 .number {
   height: 60px;
   width: 60px;
@@ -125,6 +122,18 @@ input {
   background-color: #ffF;
 }
 
+@media (max-width: 475px) {
+  .first,
+.second,
+.operand-strochniy,
+.equal,
+.userInput,
+.number {
+    height: 50px;
+    width: 50px;
+    font-size: 32px;
+  }
+}
 .animation {
   -webkit-animation: appearance 1s ease-in-out;
           animation: appearance 1s ease-in-out;
@@ -147,6 +156,28 @@ input {
     opacity: 1;
   }
 }
+.animationSmile {
+  -webkit-animation: smile 1.5s ease-in;
+          animation: smile 1.5s ease-in;
+}
+
+@-webkit-keyframes smile {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes smile {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .showInputBorder {
   border: 1px solid grey;
 }
@@ -158,11 +189,6 @@ input {
 
 .showUnderline {
   background-color: red;
-}
-
-.userInput {
-  width: 60px;
-  height: 60px;
 }
 
 .userInputHelpBox {
@@ -208,10 +234,19 @@ input {
   left: 60px;
 }
 
-.calc-btn-box {
+.smile-box {
   display: flex;
-  gap: 24px;
   justify-content: center;
-  flex-wrap: wrap;
+  gap: 50px;
+}
+
+.smile {
+  width: 120px;
+  display: flex;
+  justify-content: center;
   align-items: center;
+}
+
+._movedLeft {
+  margin-right: 167px;
 }/*# sourceMappingURL=style.css.map */

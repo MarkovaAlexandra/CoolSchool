@@ -25,14 +25,7 @@ a {
 body {
     background-image: url('@/assets/img/Background_blue.jpg');
     background-size: cover;
-}
-
-@media(max-width:767px) {
-    body {
-        background-image: none;
-        background-color: #8DC3F2;
-    }
-
+    background-position: center;
 }
 
 //убираем стрелочки на инпутах number
@@ -52,13 +45,14 @@ input[type="number"]:focus {
 .center {
     max-width: 1140px;
     margin: 0 auto;
+    padding: 0 5px;
 }
 
 .btn-calc {
-    padding: 16px;
+    padding: 8px 16px;
     width: 200px;
     margin-bottom: 25px;
-    margin-top: 25px;
+
     border-radius: 10px;
     text-decoration: none;
     background-color: #F2BBCF;
@@ -70,6 +64,8 @@ input[type="number"]:focus {
     font-size: 30px;
     cursor: pointer;
 }
+
+
 
 .btn-calc:hover {
 
@@ -98,6 +94,7 @@ input {
 
 .count {
     font-size: 40px;
+    font-weight: 600;
 }
 
 // --------------------------------------строчные вычисления
@@ -113,6 +110,7 @@ input {
 .second,
 .operand-strochniy,
 .equal,
+.userInput,
 .number {
     height: 60px;
     width: 60px;
@@ -122,6 +120,22 @@ input {
     background-color: #ffF;
 
 }
+
+@media(max-width:475px) {
+
+    .first,
+    .second,
+    .operand-strochniy,
+    .equal,
+    .userInput,
+    .number {
+        height: 50px;
+        width: 50px;
+        font-size: 32px;
+
+    }
+}
+
 
 
 //появление слагаемых и пр
@@ -139,8 +153,23 @@ input {
         opacity: 1;
         // font-size: 40px;
     }
+}
 
 
+.animationSmile {
+    animation: smile 1.5s ease-in;
+}
+
+@keyframes smile {
+    from {
+        opacity: 0;
+        // width: 10px;
+    }
+
+    to {
+        opacity: 1;
+        // width: 350px;
+    }
 }
 
 //класс будет добавляться при старте вычислений
@@ -162,10 +191,7 @@ input {
 
 
 
-.userInput {
-    width: 60px;
-    height: 60px;
-}
+
 
 //сюда пишем, то что запоминаем при вычислениях
 .userInputHelpBox {
@@ -192,7 +218,7 @@ input {
 
 
 
-//контейнер для вычислений столбиком
+//ВЫЧИСЛЕНИЯ СТОЛБИКОМ
 
 
 .stolbikBox {
@@ -218,18 +244,20 @@ input {
     left: 60px;
 }
 
-.calc-btn-box {
+
+.smile-box {
     display: flex;
-    gap: 24px;
     justify-content: center;
-    flex-wrap: wrap;
+    gap: 50px;
+}
+
+.smile {
+    width: 120px;
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 
-// .number {
-//     width: 60px;
-//     height: 60px;
-//     border: 1px solid red;
-//     font-size: 40px;
-//     background-color: #ffdbe8;
-// }
+._movedLeft {
+    margin-right: 167px;
+}

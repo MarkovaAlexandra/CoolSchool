@@ -3,9 +3,21 @@
 
         <!-- <h2>PlusStolbikComponent</h2> -->
         <StarsComponent />
-        <button class="btn-calc" @click="start">start</button>
+        <button class="btn-calc _movedLeft" @click="start">начать</button>
         <form action="#">
+            <div class="smile-box center">
+                <div class="left">
+                    <button id="8" class="btn-calc" type="reset" @click="check">проверить</button>
 
+                    <div class="count" id="scrollHere"> Счёт = {{ userCount }}</div>
+                </div>
+                <div class="smile">
+                    <div v-show="this.picture == 'right'" :class="{ animationSmile: !hasAnimation }"><img width="120"
+                            :src=right alt="Верно!"></div>
+                    <div v-show="this.picture == 'wrong'" :class="{ animationSmile: !hasAnimation }"><img width="120"
+                            :src=wrong alt="Неверно"></div>
+                </div>
+            </div>
             <div class="stolbikBox">
                 <div class="userInputHelpBox">
                     <input id="6" @keyup.enter="changeFocus($event)" type="number" class="helpUserInput"
@@ -49,7 +61,8 @@
                     </div>
 
                 </div>
-                <div class="underline" :class="{ showUnderline: isBorder }"></div>
+                <!-- <div class="underline" :class="{ showUnderline: isBorder }"></div> -->
+                <div class="underline showUnderline"></div>
                 <div class="userInputBox">
                     <input id="7" @keyup.enter="changeFocus($event)" v-model="userResThousand" type="number"
                         class="userInput" :class="{ showInputBorder: isBorder }">
@@ -61,11 +74,10 @@
                         :class="{ showInputBorder: isBorder }">
                 </div>
             </div>
-            <button id="8" class="btn-calc" type="reset" @click="check">check</button>
+
 
         </form>
         <div class="message" :class="{ animation: !hasAnimation }">{{ message }}</div>
-        <div class="count" id='scrollHere'> Счёт = {{ userCount }}</div>
     </div>
 </template>
 
@@ -75,8 +87,11 @@ import StarsComponent from './StarsComponent.vue';
 export default {
     data() {
         return {
+            right: require('@/assets/img/2.png'),
+            wrong: require('@/assets/img/1.png'),
             hasAnimation: false,
             isBorder: false,
+            picture: undefined,
             first: null,
             second: null,
             firstList: [],
@@ -103,6 +118,7 @@ export default {
             start.focus();
             this.hasAnimation = true;
             this.isBorder = true;
+            this.picture = undefined;
             this.userResThousand = '';
             this.userResHundred = '';
             this.userResTen = '';
@@ -124,10 +140,12 @@ export default {
             if (this.result == this.userResult) {
                 this.message = 'Правильно!';
                 this.userCount++;
-                starList[this.iterations].classList.add('_gold')
+                starList[this.iterations].classList.add('_gold');
+                this.picture = 'right';
             }
             else {
                 this.message = 'Не правильно...';
+                this.picture = 'wrong';
 
             }
             this.iterations++;
