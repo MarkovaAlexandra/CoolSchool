@@ -221,6 +221,10 @@ export default {
     },
     methods: {
         start() {
+            if (this.iterations == 0) {
+                const starList = document.querySelectorAll('.front-star');
+                starList.forEach(star => star.classList.remove('_gold'));
+            }
             // this.isBorder = true;
             const element = document.getElementById('scrollHere');
             element.scrollIntoView({ block: 'start', behavior: 'smooth' });

@@ -69,6 +69,10 @@ export default {
     },
     methods: {
         start() {
+            if (this.iterations == 0) {
+                const starList = document.querySelectorAll('.front-star');
+                starList.forEach(star => star.classList.remove('_gold'));
+            }
             const start = document.getElementById('startHere');
             start.focus();
             this.picture = undefined;
