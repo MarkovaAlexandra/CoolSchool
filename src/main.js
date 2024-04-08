@@ -7,7 +7,7 @@ import { createHead } from '@unhead/vue'
 
 
 
-const head = createHead()
+const head = createHead();
 
 
 
