@@ -1,4 +1,10 @@
 <template>
+    <Head>
+        <title> Таблица деления и умножения, онлайн-тренажер для начальной школы </title>
+        <meta name="description"
+            content="Онлайн-тренажер по математике для закрепления таблицы умножения и деления при помощи специально разработанных алгоритмов генерации математических примеров. Предназначен для учеников начальной школы, а также родителей и преподавателей. Для работы в школе и дома.">
+    </Head>
+
     <div class="main">
         <!-- <h2>DivTablComponent</h2> -->
         <StarsComponent />
@@ -19,7 +25,7 @@
             </div>
             <input id="startHere" class="userInput" :class="{ showInputBorder: hasAnimation }" @keyup.enter="check"
                 type="number" v-model="userResult">
-            <!-- <button class="btn-calc" @click="check">check</button> -->
+
         </div>
 
         <div class="message" :class="{ animation: !hasAnimation }"> {{ message }}</div>
@@ -33,6 +39,7 @@
 
 <script>
 import StarsComponent from './StarsComponent.vue';
+import { Head } from '@unhead/vue/components';
 
 export default {
     data() {

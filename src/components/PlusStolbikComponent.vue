@@ -1,4 +1,10 @@
 <template>
+    <Head>
+        <title> Сложение столбиком, онлайн-тренажер для отработки арифметических вычислений столбиком для начальной школы
+        </title>
+        <meta name="description"
+            content="Онлайн-тренажер по математике для отработки сложения столбиком при помощи специально разработанных алгоритмов генерации математических примеров. Предназначен для учеников начальной школы, а также родителей и преподавателей. Для работы в школе и дома.">
+    </Head>
     <div class="main">
 
         <!-- <h2>PlusStolbikComponent</h2> -->
@@ -61,7 +67,7 @@
                     </div>
 
                 </div>
-                <!-- <div class="underline" :class="{ showUnderline: isBorder }"></div> -->
+
                 <div class="underline showUnderline"></div>
                 <div class="userInputBox">
                     <input id="7" @keyup.enter="changeFocus($event)" v-model="userResThousand" type="number"
@@ -83,6 +89,7 @@
 
 <script>
 import StarsComponent from './StarsComponent.vue';
+import { Head } from '@unhead/vue/components';
 
 export default {
     data() {

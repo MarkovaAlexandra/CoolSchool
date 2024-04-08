@@ -1,6 +1,11 @@
 <template>
+    <Head>
+        <title> Вычитание столбиком онлайн-тренажер </title>
+        <meta name="description"
+            content="Онлайн-тренажер по математике для отработки вычитания столбиком при помощи специально разработанных алгоритмов генерации математических примеров. Предназначен для учеников начальной школы, а также родителей и преподавателей. Для работы в школе и дома.">
+    </Head>
     <div class="main">
-        <!-- <h2>MinusStolbikComponent</h2> -->
+
         <StarsComponent />
         <button class="btn-calc _movedLeft" @click="start">начать</button>
         <form action="#">
@@ -59,11 +64,10 @@
                     </div>
 
                 </div>
-                <!-- <div class="underline" :class="{ showUnderline: isBorder }"></div> -->
+
                 <div class="underline showUnderline"></div>
                 <div class="userInputBox">
-                    <!-- <input @keyup.enter="changeFocus($event)" v-model="userResThousand" type="number" class="userInput"
-                    :class="{ showInputBorder: isBorder }"> -->
+
                     <input id="5" @keyup.enter="changeFocus($event)" v-model="userResHundred" type="number"
                         class="userInput" :class="{ showInputBorder: isBorder }">
                     <input id="4" @keyup.enter="changeFocus($event)" v-model="userResTen" type="number" class="userInput"
@@ -81,6 +85,7 @@
 
 <script>
 import StarsComponent from './StarsComponent.vue';
+import { Head } from '@unhead/vue/components';
 
 export default {
     data() {

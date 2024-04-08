@@ -1,9 +1,11 @@
 <template>
+    <Head>
+        <title> Онлайн-тренажер по математике для начальной школы </title>
+        <meta name="description"
+            content="Онлайн-тренажер по математике для отработки навыков устного счета в начальной школе при помощи специально разработанных алгоритмов генерации математических примеров. Предназначен для учеников начальной школы, а также родителей и преподавателей. Для работы в школе и дома.">
+    </Head>
     <div class="main">
-
-        <!-- <h2>Plus10Component</h2> -->
         <StarsComponent />
-
 
         <button class="btn-calc" @click="start"> начать</button>
         <div class="strochnie-vichisleniya">
@@ -29,7 +31,6 @@
             <input id="startHere" class="userInput" :class="{ showInputBorder: hasAnimation }" @keyup.enter="check"
                 type="number" v-model="userResult">
 
-            <!-- <button type="reset" class="btn-calc" @click="check">check</button> -->
         </div>
         <div class="count"> Счёт = {{ userCount }}</div>
         <div class="message" :class="{ animation: !hasAnimation }"> {{ message }}</div>
@@ -44,7 +45,7 @@
 
 <script>
 import StarsComponent from './StarsComponent.vue';
-
+import { Head } from '@unhead/vue/components';
 
 export default {
     data() {
@@ -111,12 +112,7 @@ export default {
         },
     },
     components: { StarsComponent },
-    // onMounted: {
-    //     clearStarList() {
-    //         const starList = document.querySelectorAll('.front-star');
-    //         starList.forEach(star => star.classList.remove('_gold'));
-    //     },
-    // }
+
 }
 
 

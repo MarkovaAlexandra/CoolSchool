@@ -1,9 +1,11 @@
 <template>
+    <Head>
+        <title> Деление столбиком, деление столбиком с остатком, онлайн-тренажер </title>
+        <meta name="description"
+            content="Онлайн-тренажер по математике для отработки деления столбиком при помощи специально разработанных алгоритмов генерации математических примеров. Предназначен для учеников начальной школы, а также родителей и преподавателей. Для работы в школе и дома.">
+    </Head>
     <div class="main">
-
-        <!-- <h2>DivStolbikComponent</h2> -->
         <StarsComponent />
-
 
         <button class="btn-calc _movedLeft" @click="start">начать</button>
         <form id="mainForm" action="#">
@@ -173,19 +175,18 @@
 
 <script>
 import StarsComponent from './StarsComponent.vue';
+import { Head } from '@unhead/vue/components';
 
 export default {
     mounted() {
 
     },
 
-
     data() {
         return {
             right: require('@/assets/img/2.png'),
             wrong: require('@/assets/img/1.png'),
             hasAnimation: false,
-            // isBorder: false,
             first: null,
             second: null,
             firstList: [],
@@ -232,10 +233,6 @@ export default {
             this.secondList = String(this.second).split('');
             this.result = Math.floor(this.first / this.second);
             this.ostatok = this.first % this.second;
-            // console.log(this.result);
-            // console.log(this.ostatok);
-            // console.log(this.firstList);
-            // console.log(this.secondList);
 
         },
         check() {

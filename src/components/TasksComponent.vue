@@ -1,20 +1,22 @@
 <template>
+    <Head>
+        <title> Онлайн-тренажеры по математике для начальной школы| Пятематика | Пятерка по математике</title>
+        <meta name="description"
+            content="Онлайн-тренажер по математике для отработки и совершенствования основных навыков устного счета  и вычислений столбиком при помощи специально разработанных алгоритмов генерации математических примеров. Предназначен для учеников начальной школы, а также родителей и преподавателей. Для работы в школе и дома.">
+    </Head>
     <div class="main">
-
         <div class="buttons-box center">
             <button class="btn-task" v-for="link in links" :key="link.id"><router-link class="menu-link" :to=link.url>{{
                 link.title
             }} </router-link>
             </button>
         </div>
-
-
-
-
     </div>
 </template>
 
 <script>
+import { Head } from '@unhead/vue/components';
+
 export default {
     data() {
         return {

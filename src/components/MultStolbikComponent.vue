@@ -1,6 +1,11 @@
 <template>
+    <Head>
+        <title> Умножение столбиком, онлайн-тренажер по математике </title>
+        <meta name="description"
+            content="Онлайн-тренажер по математике для отработки умножения столбиком при помощи специально разработанных алгоритмов генерации математических примеров. Предназначен для учеников начальной школы, а также родителей и преподавателей. Для работы в школе и дома.">
+    </Head>
     <div class="main">
-        <!-- <h2>MultStolbikComponent</h2> -->
+
         <StarsComponent />
 
         <button class="btn-calc _movedLeft" @click="start">начать</button>
@@ -99,6 +104,7 @@
 
 <script>
 import StarsComponent from './StarsComponent.vue';
+import { Head } from '@unhead/vue/components';
 
 export default {
     data() {
