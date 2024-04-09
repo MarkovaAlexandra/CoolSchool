@@ -8,13 +8,13 @@
                 </div>
                 <div class="footer-info">
                     <div class="footer-link">
-                        Design by <a
+                        Design by <a target="_blank"
                             href="https://ru.freepik.com/free-vector/colorful-background-with-geometric-shapes_18483442.htm">Freepik</a>
                     </div>
                     <div class="footer-link">
                         Favicon by
-                        <a
-                            href="https://ru.freepik.com/free-vector/colorful-background-with-geometric-shapes_18483442.htm">Freepik</a>
+                        <a target="_blank"
+                            href="https://ru.freepik.com/icon/5_3570107#fromView=keyword&page=2&position=9&uuid=941fd0fa-2e96-4676-8d4b-e12bb2bc3e60">Freepik</a>
                     </div>
 
                 </div>
