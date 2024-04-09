@@ -29,6 +29,13 @@ body {
     background-position: center;
 }
 
+@media(max-width:767px) {
+    body {
+        background-image: none;
+        background-color: #8DC3F2;
+    }
+}
+
 //убираем стрелочки на инпутах number
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {

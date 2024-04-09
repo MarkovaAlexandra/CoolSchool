@@ -7,8 +7,16 @@
                 <div class="footer-info"><a target="_blank" href="https://t.me/hello_markova">Связь с разработчиком</a>
                 </div>
                 <div class="footer-info">
-                    Design by <a
-                        href="https://ru.freepik.com/free-vector/colorful-background-with-geometric-shapes_18483442.htm">Freepik</a>
+                    <div class="footer-link">
+                        Design by <a
+                            href="https://ru.freepik.com/free-vector/colorful-background-with-geometric-shapes_18483442.htm">Freepik</a>
+                    </div>
+                    <div class="footer-link">
+                        Favicon by
+                        <a
+                            href="https://ru.freepik.com/free-vector/colorful-background-with-geometric-shapes_18483442.htm">Freepik</a>
+                    </div>
+
                 </div>
                 <div class="footer-info"> <router-link to="/confidentional">Политика конфиденциальности</router-link> </div>
 
@@ -19,19 +27,34 @@
 
 
 <style>
+.footer-section {
+    padding: 8px 0;
+    background-color: #9acbf5d1;
+}
+
 .footer {
-    height: 50px;
     display: flex;
-    justify-content: space-between;
-    margin: 30px 0;
+    justify-content: space-around;
     flex-wrap: wrap;
-    gap: 16px;
+    align-content: center;
+    align-items: center;
+
 }
 
 .footer-info {
-
-    font-size: 20px;
+    font-size: 14px;
     color: black;
-    font-weight: 600;
+    font-weight: 500;
+    width: 33%;
+}
+
+@media(max-width:476px) {
+    .footer {
+        gap: 8px;
+    }
+
+    .footer-info {
+        width: 100%;
+    }
 }
 </style>

@@ -65,6 +65,8 @@
     width: 35px;
 }
 
+
+
 .back-star {
     color: black;
     font-size: 34px;
@@ -78,7 +80,20 @@
     left: 4px;
 }
 
+@media(max-width:376px) {
+    .star {
+        width: 30px;
+    }
+
+    .back-star {
+        font-size: 30px;
+    }
+
+    .front-star {
+        font-size: 22px;
+    }
+}
+
 ._gold {
     color: gold;
-}
-</style>
+}</style>
