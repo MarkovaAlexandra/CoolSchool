@@ -13,6 +13,7 @@ import DivStolbikNoRemainderComponent from '@/components/DivStolbikNoRemainderCo
 import DivStolbikComponent from '@/components/DivStolbikComponent.vue'
 import TasksComponent from '@/components/TasksComponent.vue'
 import ConfidentionalPolicy from '@/components/ConfidentionalPolicy.vue'
+import PageNotFoundComponent from '@/components/PageNotFoundComponent.vue'
 
 
 
@@ -87,6 +88,11 @@ const routes = [
         path: '/confidentional',
         name: 'confidentionalPolicy',
         component: ConfidentionalPolicy,
+    },
+    {
+        path: "/:CatchAll(.*)",
+        name: 'NotFoundPage',
+        component: PageNotFoundComponent,
     }
 ];
 
