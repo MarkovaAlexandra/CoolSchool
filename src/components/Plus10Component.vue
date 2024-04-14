@@ -2,7 +2,11 @@
     <div class="main">
         <StarsComponent />
 
-        <button class="btn-calc" @click="start"> начать</button>
+        <div class="start-box">
+            <button class="btn-calc" @click="start"> начать</button>
+
+            <button @click="muteSound"> <img width="30" :src=soundPic alt="вкл/выкл звук"> </button>
+        </div>
         <div class="strochnie-vichisleniya">
             <!--:class добавляется если условие hasAnimation = true,
 изначально ставлю его false, в момент старта меняю на тру, чтобы добавить класс в момент появления данных в диве,
@@ -34,13 +38,20 @@
                 <div class="message" :class="{ animation: !hasAnimation }"> {{ message }}</div>
             </div>
             <div class="smile">
-                <div v-show="this.picture == 'right'" :class="{ animationSmile: !hasAnimation }"><img width="120" :src=right
-                        alt="Верно!"></div>
-                <div v-show="this.picture == 'wrong'" :class="{ animationSmile: !hasAnimation }"><img width="120" :src=wrong
-                        alt="Неверно"></div>
+                <div v-show="this.condition == 'right'" :class="{ animationSmile: !hasAnimation }"><img width="120"
+                        :src=right alt="Верно!"></div>
+                <div v-show="this.condition == 'wrong'" :class="{ animationSmile: !hasAnimation }"><img width="120"
+                        :src=wrong alt="Неверно"></div>
             </div>
-
         </div>
+
+        <div v-if="this.condition == 'right'" class="sound">
+            <audio class="win" :autoplay="soundOn" :src=winSound></audio>
+        </div>
+        <div v-if="this.condition == 'wrong'">
+            <audio class="lose" :autoplay="soundOn" :src=loseSound></audio>
+        </div>
+
     </div>
 </template>
 
@@ -63,9 +74,16 @@ export default {
         return {
             right: require('@/assets/img/2.png'),
             wrong: require('@/assets/img/1.png'),
+            loseSound: require('@/assets/audio/lose.mp3'),
+            winSound: require('@/assets/audio/win.mp3'),
+            soundPic: require('@/assets/img/sound_on.png'), // начальная иконка на кнопке
+            soundOnPic: require('@/assets/img/sound_on.png'),
+            soundOffPic: require('@/assets/img/sound_off.png'),
+            soundOn: false, //изначально звук в режиме autoplay false, для включения ф-ция muteSound по кнопке
             hasAnimation: false,
-            first: null,
-            second: null,
+            first: null, //первое слагаемое
+            previous: null, // предыдущее первое слагаемое, чтобы избежать повтора
+            second: null,// второе слагаемое
             operand: '',
             userResult: '',
             message: '',
@@ -73,55 +91,72 @@ export default {
             iterations: 0,
             max: 9,
             min: 1,
-            picture: undefined,
+            condition: undefined, //условие отображения картинок и звуков
         };
     },
     methods: {
+        muteSound() {
+            this.soundOn = !this.soundOn; //переключает autoplay true/false (биндится в атрибут аудио)
+            if (this.soundOn == true) {
+                this.soundPic = this.soundOffPic; //переключает иконку на кнопке
+            }
+            else {
+                this.soundPic = this.soundOnPic;
+            }
+
+        },
         start() {
+            const starList = document.querySelectorAll('.front-star');
             if (this.iterations == 0) {
-                const starList = document.querySelectorAll('.front-star');
                 starList.forEach(star => star.classList.remove('_gold'));
             }
             const startHere = document.getElementById('startHere');
-            this.picture = undefined;
             startHere.focus();
+            this.condition = undefined;
             this.userResult = '',
                 this.message = '',
                 this.hasAnimation = true;
-            this.first = Math.floor(Math.random() * this.max + 1);
+            //проверка, чтобы не было повторений примеров
+            while (true) {
+                this.first = Math.floor(Math.random() * this.max + 1);
+                if (this.first != this.previous) {
+                    break;
+                }
+            }
             this.second = Math.floor(Math.random() * (10 - this.first) + 1);
             this.result = this.first + this.second;
             this.operand = "+";
+            this.previous = this.first;
         },
         check() {
             this.hasAnimation = false;
             const starList = document.querySelectorAll('.front-star');
             if (this.result == this.userResult) {
                 this.message = 'Правильно!';
-                this.picture = 'right';
+                this.condition = 'right';
                 this.userCount++;
                 starList[this.iterations].classList.add('_gold');
             }
             else {
-                this.message = 'Не правильно...';
-                this.picture = 'wrong';
-
+                this.message = `Ошибка, верный ответ ${this.result}`;
+                this.condition = 'wrong';
             }
             this.iterations++;
             if (this.iterations < 10) {
                 setTimeout(() => {
                     this.start();
-                }, 2000);
+                }, 1500);
             }
             else {
                 this.message = `ваш результат ` + this.userCount + ` из ` + this.iterations;
                 setTimeout(() => {
-                    this.iterations = '';
+                    this.iterations = 0;
                     this.userCount = 0;
-                    this.first = '';
-                    this.second = '';
+                    this.first = null;
+                    this.second = null;
                     this.operand = '';
                     starList.forEach(star => star.classList.remove('_gold'));
+                    this.message = '';
                 }, 3000);
             }
         },
